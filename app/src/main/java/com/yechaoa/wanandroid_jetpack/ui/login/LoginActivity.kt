@@ -14,7 +14,7 @@ import com.yechaoa.wanandroid_jetpack.R
 import com.yechaoa.wanandroid_jetpack.base.BaseVmActivity
 import com.yechaoa.wanandroid_jetpack.common.MyConfig
 import com.yechaoa.wanandroid_jetpack.databinding.ActivityLoginBinding
-import com.yechaoa.wanandroid_jetpack.ui.MainActivity
+import com.yechaoa.wanandroid_jetpack.ui.main.MainActivity
 import com.yechaoa.wanandroid_jetpack.util.NetworkUtil
 import com.yechaoa.wanandroid_jetpack.util.setOnclickNoRepeat
 import com.yechaoa.yutilskt.ActivityUtil

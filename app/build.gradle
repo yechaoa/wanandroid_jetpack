@@ -75,31 +75,35 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$extJunit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 
+    /*okhttp、retrofit*/
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$gson_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_version"
 
-    implementation "com.permissionx.guolindev:permissionx:$permissionx_version"
+    /*swiperefreshlayout*/
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefresh_version"
 
+    /*immersionbar*/
     implementation "com.gyf.immersionbar:immersionbar:$immersionbar_version"
 
+    /*agentWeb*/
     implementation "com.just.agentweb:agentweb-androidx:$agentweb_version"
 
-    implementation "org.greenrobot:eventbus:$eventbus_version"
-
+    /*YUtils*/
     implementation "com.github.yechaoa.YUtils:yutilskt:$yutilskt_version"
 
+    /*BRVAH*/
     implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:$brvha_version"
 
+    /*glide*/
     implementation "com.github.bumptech.glide:glide:$glide_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 
+    /*FlowLayout*/
     implementation "com.hyman:flowlayout-lib:$flowLayout_version"
 
-    // debugImplementation because LeakCanary should only run in debug builds.
-    //debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
-
+    /*room*/
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     // optional - Kotlin Extensions and Coroutines support for Room
@@ -107,7 +111,4 @@ dependencies {
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
 
-    implementation "com.github.chrisbanes:PhotoView:$photo_version"
-
-    implementation "com.github.yalantis:ucrop:$ucrop_version"
 }

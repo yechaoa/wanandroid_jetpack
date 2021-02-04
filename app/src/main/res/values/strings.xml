@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">wanandroid_jetpack</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="author">yechaoa</string>
 
     <string name="title_home">首页</string>
     <string name="title_tree">体系</string>
     <string name="title_navi">导航</string>
     <string name="title_project">项目</string>
+
+    <string name="action_search">搜索</string>
+    <string name="action_settings">设置</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="hint_username">请输入账号</string>
     <string name="hint_password">请输入密码</string>

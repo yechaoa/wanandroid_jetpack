@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.main.MainActivity" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -28,6 +28,7 @@
             android:name=".ui.login.LoginActivity"
             android:launchMode="singleTop"
             android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity android:name=".ui.collect.CollectActivity" />
     </application>
 
 </manifest>

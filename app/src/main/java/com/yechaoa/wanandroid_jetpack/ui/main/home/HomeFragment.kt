@@ -1,4 +1,4 @@
-package com.yechaoa.wanandroid_jetpack.ui.home
+package com.yechaoa.wanandroid_jetpack.ui.main.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

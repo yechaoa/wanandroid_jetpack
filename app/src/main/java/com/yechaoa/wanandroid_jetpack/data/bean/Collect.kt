@@ -1,4 +1,4 @@
-package com.yechaoa.wanandroid_kotlin.bean
+package com.yechaoa.wanandroid_jetpack.data.bean
 
 
 data class Collect(

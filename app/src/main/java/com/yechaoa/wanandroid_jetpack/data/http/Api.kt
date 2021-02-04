@@ -1,6 +1,7 @@
 package com.yechaoa.wanandroid_jetpack.data.http
 
 import com.yechaoa.wanandroid_jetpack.base.BaseBean
+import com.yechaoa.wanandroid_jetpack.data.bean.Collect
 import com.yechaoa.wanandroid_jetpack.data.bean.Navi
 import com.yechaoa.wanandroid_jetpack.data.bean.UserBean
 import com.yechaoa.wanandroid_kotlin.bean.*
