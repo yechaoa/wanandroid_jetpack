@@ -1,0 +1,113 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion project.compile_version
+    buildToolsVersion project.build_version
+
+    defaultConfig {
+        applicationId "com.yechaoa.wanandroid_jetpack"
+        minSdkVersion project.minSdk_version
+        targetSdkVersion project.targetSdk_version
+        versionCode project.versionCode
+        versionName project.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding = true
+        // dataBinding = true
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "${variant.name}-${variant.versionName}-${variant.versionCode}-${releaseTime()}.apk"
+        }
+    }
+
+//    signingConfigs {
+//        config {
+//            storeFile file("./jks/lawappandroid.jks")
+//            storePassword "lawapp"
+//            keyAlias "lawapp"
+//            keyPassword "lawapp"
+//            v1SigningEnabled true
+//            v2SigningEnabled true
+//        }
+//    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+static def releaseTime() {
+    return new Date().format("MMdd_HHmm", TimeZone.default)
+}
+
+dependencies {
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$core_version"
+    implementation "androidx.appcompat:appcompat:$compat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
+    implementation "androidx.navigation:navigation-fragment:$navigationFragment_version"
+    implementation "androidx.navigation:navigation-ui:$navigation_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationFragment_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$extJunit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_version"
+
+    implementation "com.permissionx.guolindev:permissionx:$permissionx_version"
+
+    implementation "com.gyf.immersionbar:immersionbar:$immersionbar_version"
+
+    implementation "com.just.agentweb:agentweb-androidx:$agentweb_version"
+
+    implementation "org.greenrobot:eventbus:$eventbus_version"
+
+    implementation "com.github.yechaoa.YUtils:yutilskt:$yutilskt_version"
+
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:$brvha_version"
+
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    implementation "com.hyman:flowlayout-lib:$flowLayout_version"
+
+    // debugImplementation because LeakCanary should only run in debug builds.
+    //debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$room_version"
+    // optional - Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
+
+    implementation "com.github.chrisbanes:PhotoView:$photo_version"
+
+    implementation "com.github.yalantis:ucrop:$ucrop_version"
+}
