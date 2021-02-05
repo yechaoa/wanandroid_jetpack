@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.about.AboutActivity"
+    tools:showIn="@layout/activity_about">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp_20"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_app_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20" />
+
+        <View style="@style/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Github："
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/tv_github"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="yechaoa/wanandroid_jetpack"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sp_16" />
+
+        </LinearLayout>
+
+        <View style="@style/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开放API："
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/tv_api"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="www.wanandroid.com"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sp_16" />
+
+        </LinearLayout>
+
+        <View style="@style/line" />
+
+        <TextView
+            android:id="@+id/tv_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/large_text" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

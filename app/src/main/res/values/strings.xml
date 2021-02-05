@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">wanandroid_jetpack</string>
     <string name="author">yechaoa</string>
+    <string name="wanandroid">玩安卓</string>
     <string name="github">https://github.com/yechaoa/wanandroid_jetpack</string>
 
     <string name="title_home">首页</string>
@@ -20,5 +21,20 @@
     <string name="username">账号</string>
     <string name="register">注册账号</string>
     <string name="login">登 录</string>
+
+    <string name="large_text">
+        "用到的库：\n\n"
+        "YUtils\n\n"
+        "retrofit\n\n"
+        "rxjava2\n\n"
+        "BRVAH\n\n"
+        "banner\n\n"
+        "glide\n\n"
+        "agentweb\n\n"
+        "VerticalTabLayout\n\n"
+        "flowlayout\n\n"
+        "immersionbar\n\n"
+        "jetpack..\n\n"
+    </string>
 
 </resources>

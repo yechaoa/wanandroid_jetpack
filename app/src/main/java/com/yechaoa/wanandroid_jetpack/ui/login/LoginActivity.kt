@@ -99,7 +99,7 @@ class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>() {
 
     private fun setText() {
         val spanBuilder = SpannableStringBuilder("同意")
-        val color = ContextCompat.getColor(applicationContext, R.color.red)
+        val color = ContextCompat.getColor(applicationContext, R.color.colorPrimary)
 
         var span = SpannableString("服务协议")
         span.setSpan(object : ClickableSpan() {

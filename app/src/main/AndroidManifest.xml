@@ -30,6 +30,7 @@
             android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity android:name=".ui.collect.CollectActivity" />
         <activity android:name=".ui.detail.DetailActivity" />
+        <activity android:name=".ui.about.AboutActivity" />
     </application>
 
 </manifest>

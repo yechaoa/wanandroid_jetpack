@@ -14,13 +14,14 @@ import com.yechaoa.wanandroid_jetpack.common.MyConfig
 import com.yechaoa.wanandroid_jetpack.databinding.ActivityMainBinding
 import com.yechaoa.wanandroid_jetpack.databinding.AppBarMainBinding
 import com.yechaoa.wanandroid_jetpack.databinding.ContentMainBinding
+import com.yechaoa.wanandroid_jetpack.ui.about.AboutActivity
+import com.yechaoa.wanandroid_jetpack.ui.adapter.CommonViewPagerAdapter
 import com.yechaoa.wanandroid_jetpack.ui.collect.CollectActivity
-import com.yechaoa.wanandroid_jetpack.ui.main.home.HomeFragment
 import com.yechaoa.wanandroid_jetpack.ui.login.LoginActivity
+import com.yechaoa.wanandroid_jetpack.ui.main.home.HomeFragment
 import com.yechaoa.wanandroid_jetpack.ui.main.navi.NaviFragment
 import com.yechaoa.wanandroid_jetpack.ui.main.pro.ProjectFragment
 import com.yechaoa.wanandroid_jetpack.ui.main.tree.TreeFragment
-import com.yechaoa.wanandroid_jetpack.ui.adapter.CommonViewPagerAdapter
 import com.yechaoa.yutilskt.ActivityUtil
 import com.yechaoa.yutilskt.SpUtil
 import com.yechaoa.yutilskt.ToastUtil
@@ -73,12 +74,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      * 初始化Fragment
      */
     private fun initFragments() {
-        val viewPagerAdapter = CommonViewPagerAdapter(supportFragmentManager)
-        viewPagerAdapter.addFragment(HomeFragment())
-        viewPagerAdapter.addFragment(TreeFragment())
-        viewPagerAdapter.addFragment(NaviFragment())
-        viewPagerAdapter.addFragment(ProjectFragment())
-
+        val viewPagerAdapter = CommonViewPagerAdapter(supportFragmentManager).apply {
+            addFragment(HomeFragment())
+            addFragment(TreeFragment())
+            addFragment(NaviFragment())
+            addFragment(ProjectFragment())
+        }
         mAppBarMainBinding.contentMain.viewPager.offscreenPageLimit = 1
         mAppBarMainBinding.contentMain.viewPager.adapter = viewPagerAdapter
     }
@@ -87,7 +88,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onResume()
         initListener()
     }
-
 
     private fun initListener() {
         /**
@@ -103,7 +103,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     shareProject()
                 }
                 R.id.nav_about -> {
-//                    startActivity(Intent(this, AboutActivity::class.java))
+                    startActivity(Intent(this, AboutActivity::class.java))
                 }
                 R.id.nav_logout -> {
                     val builder = AlertDialog.Builder(this@MainActivity)
@@ -130,32 +130,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
          * view_pager 滑动监听
          */
         mAppBarMainBinding.contentMain.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
-            }
+            override fun onPageScrollStateChanged(state: Int) {}
 
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-            }
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
                 mAppBarMainBinding.contentMain.bottomNavigation.menu.getItem(position).isChecked = true
                 //设置checked为true，但是不能触发ItemSelected事件，所以滑动时也要设置一下标题
                 when (position) {
-                    0 -> {
-                        mAppBarMainBinding.toolbar.title = resources.getString(R.string.app_name)
-                    }
-                    1 -> {
-                        mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_tree)
-                    }
-                    2 -> {
-                        mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_navi)
-                    }
-                    else -> {
-                        mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_project)
-                    }
+                    0 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.app_name)
+                    1 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_tree)
+                    2 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_navi)
+                    else -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_project)
                 }
             }
         })
@@ -190,13 +176,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
      * 调用系统的分享功能
      */
     private fun shareProject() {
-        val intent = Intent()
-        intent.action = Intent.ACTION_SEND
-        intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_SUBJECT, "玩安卓")
-        intent.putExtra(Intent.EXTRA_TEXT, "https://github.com/yechaoa/wanandroid_kotlin")
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(Intent.createChooser(intent, "玩安卓"))
+        val intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            type = "text/plain"
+            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.wanandroid))
+            putExtra(Intent.EXTRA_TEXT, getString(R.string.github))
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        startActivity(Intent.createChooser(intent, getString(R.string.wanandroid)))
     }
 
     /**
@@ -238,6 +225,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 ActivityUtil.closeAllActivity()
             }
         }
-        //super.onBackPressed()
     }
 }

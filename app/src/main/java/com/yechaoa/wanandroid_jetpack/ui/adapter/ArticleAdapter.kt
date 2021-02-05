@@ -26,11 +26,9 @@ class ArticleAdapter : BaseQuickAdapter<Article.ArticleDetail, BaseViewHolder>(R
         holder.setText(R.id.article_date, item.niceDate)
 
         if (item.collect) {
-            Glide.with(context).load(R.mipmap.ic_like_checked)
-                .into(holder.getView(R.id.article_favorite))
+            Glide.with(context).load(R.mipmap.ic_like_checked).into(holder.getView(R.id.article_favorite))
         } else {
-            Glide.with(context).load(R.mipmap.ic_like_normal)
-                .into(holder.getView(R.id.article_favorite))
+            Glide.with(context).load(R.mipmap.ic_like_normal).into(holder.getView(R.id.article_favorite))
         }
     }
 
