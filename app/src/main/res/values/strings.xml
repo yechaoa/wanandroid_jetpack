@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">wanandroid_jetpack</string>
     <string name="author">yechaoa</string>
+    <string name="github">https://github.com/yechaoa/wanandroid_jetpack</string>
 
     <string name="title_home">首页</string>
     <string name="title_tree">体系</string>

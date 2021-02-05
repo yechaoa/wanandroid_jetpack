@@ -2,6 +2,8 @@ package com.yechaoa.wanandroid_jetpack.ui.splash
 
 import android.content.Intent
 import android.os.CountDownTimer
+import com.gyf.immersionbar.ImmersionBar
+import com.yechaoa.wanandroid_jetpack.R
 import com.yechaoa.wanandroid_jetpack.base.BaseActivity
 import com.yechaoa.wanandroid_jetpack.common.MyConfig
 import com.yechaoa.wanandroid_jetpack.databinding.ActivitySplashBinding
@@ -20,6 +22,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
     override fun init() {
         super.init()
+        ImmersionBar.with(this).fitsSystemWindows(true).barColor(R.color.transparent).init()
         setListener()
     }
 

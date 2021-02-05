@@ -81,6 +81,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$gson_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_version"
 
+    /*banner*/
+    implementation "com.youth.banner:banner:$banner_version"
+
     /*swiperefreshlayout*/
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefresh_version"
 

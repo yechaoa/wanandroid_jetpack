@@ -22,8 +22,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
         ImmersionBar.with(this)
             .fitsSystemWindows(true)
-            .statusBarColor(R.color.white)
-            .statusBarDarkFont(true)
+            .statusBarColor(R.color.colorPrimary)
             .navigationBarColor(R.color.transparent)
             .init()
 

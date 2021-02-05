@@ -1,4 +1,4 @@
-package com.yechaoa.wanandroid_kotlin.bean
+package com.yechaoa.wanandroid_jetpack.data.bean
 
 /**
  * Created by yechao on 2020/1/19/019.

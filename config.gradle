@@ -29,6 +29,7 @@ ext {
     gson_version = "2.9.0"
     logging_version = "3.12.0"
 
+    banner_version = "2.1.0"
     swiperefresh_version = "1.1.0"
     immersionbar_version = "3.0.0"
     agentweb_version = "4.1.4"

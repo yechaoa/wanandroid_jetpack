@@ -1,13 +1,32 @@
 package com.yechaoa.wanandroid_jetpack.ui.main.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.yechaoa.wanandroid_jetpack.base.BaseViewModel
+import com.yechaoa.wanandroid_jetpack.data.bean.Article
+import com.yechaoa.wanandroid_jetpack.data.bean.Banner
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel : BaseViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private val repository by lazy { HomeRepository() }
+
+    val bannerList = MutableLiveData<MutableList<Banner>>()
+
+    fun getBanner() {
+        launch(
+            block = {
+                bannerList.value = repository.getBanner()
+            }
+        )
     }
-    val text: LiveData<String> = _text
+
+    val articleList = MutableLiveData<MutableList<Article.ArticleDetail>>()
+
+    fun getArticleList(page: Int) {
+        launch(
+            block = {
+                articleList.value = repository.getArticleList(page).datas
+            }
+        )
+    }
+
 }

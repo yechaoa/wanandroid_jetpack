@@ -36,13 +36,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun init() {
         super.init()
-
         //include 写法
-        mAppBarMainBinding = AppBarMainBinding.bind(mBinding.root)
-        mContentMainBinding = ContentMainBinding.bind(mBinding.root)
+        mAppBarMainBinding = mBinding.appBarMain
+        mContentMainBinding = mBinding.appBarMain.contentMain
 
         mAppBarMainBinding.toolbar.title = resources.getString(R.string.app_name)
-//        setSupportActionBar(toolbar)
 
         mAppBarMainBinding.fab.setOnClickListener {
             Snackbar.make(it, "这是一个提示", Snackbar.LENGTH_SHORT).setAction("按钮") {
@@ -81,8 +79,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         viewPagerAdapter.addFragment(NaviFragment())
         viewPagerAdapter.addFragment(ProjectFragment())
 
-        mContentMainBinding.viewPager.offscreenPageLimit = 1
-        mContentMainBinding.viewPager.adapter = viewPagerAdapter
+        mAppBarMainBinding.contentMain.viewPager.offscreenPageLimit = 1
+        mAppBarMainBinding.contentMain.viewPager.adapter = viewPagerAdapter
     }
 
     override fun onResume() {
@@ -131,7 +129,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         /**
          * view_pager 滑动监听
          */
-        mContentMainBinding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        mAppBarMainBinding.contentMain.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
@@ -143,7 +141,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
 
             override fun onPageSelected(position: Int) {
-                mContentMainBinding.bottomNavigation.menu.getItem(position).isChecked = true
+                mAppBarMainBinding.contentMain.bottomNavigation.menu.getItem(position).isChecked = true
                 //设置checked为true，但是不能触发ItemSelected事件，所以滑动时也要设置一下标题
                 when (position) {
                     0 -> {
@@ -165,22 +163,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         /**
          * bottom_navigation 点击事件
          */
-        mContentMainBinding.bottomNavigation.setOnNavigationItemSelectedListener {
+        mAppBarMainBinding.contentMain.bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
-                    mContentMainBinding.viewPager.currentItem = 0
+                    mAppBarMainBinding.contentMain.viewPager.currentItem = 0
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_tree -> {
-                    mContentMainBinding.viewPager.currentItem = 1
+                    mAppBarMainBinding.contentMain.viewPager.currentItem = 1
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_navi -> {
-                    mContentMainBinding.viewPager.currentItem = 2
+                    mAppBarMainBinding.contentMain.viewPager.currentItem = 2
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_project -> {
-                    mContentMainBinding.viewPager.currentItem = 3
+                    mAppBarMainBinding.contentMain.viewPager.currentItem = 3
                     return@setOnNavigationItemSelectedListener true
                 }
             }
