@@ -1,24 +1,17 @@
 package com.yechaoa.wanandroid_jetpack.ui.collect
 
 import android.content.Intent
-import androidx.appcompat.app.AlertDialog
+import com.yechaoa.wanandroid_jetpack.R
 import com.yechaoa.wanandroid_jetpack.base.BaseVmActivity
-import com.yechaoa.wanandroid_jetpack.data.bean.CollectDetail
 import com.yechaoa.wanandroid_jetpack.databinding.ActivityCollectBinding
 import com.yechaoa.wanandroid_jetpack.ui.adapter.CollectAdapter
-import com.yechaoa.wanandroid_jetpack.ui.login.LoginActivity
+import com.yechaoa.wanandroid_jetpack.ui.detail.DetailActivity
+import com.yechaoa.yutilskt.ToastUtil
 
 class CollectActivity : BaseVmActivity<ActivityCollectBinding, CollectViewModel>() {
 
     private lateinit var mCollectAdapter: CollectAdapter
-    private lateinit var mDataList: MutableList<CollectDetail>
-    private var mPosition: Int = 0
-
-    companion object {
-        private const val TOTAL_COUNTER = 20//每次加载数量
-        private var CURRENT_SIZE = 0//当前加载数量
-        private var CURRENT_PAGE = 0//当前加载页数
-    }
+    private var mPosition = -1
 
     override fun viewModelClass(): Class<CollectViewModel> = CollectViewModel::class.java
 
@@ -36,28 +29,27 @@ class CollectActivity : BaseVmActivity<ActivityCollectBinding, CollectViewModel>
             //开启加载动画
             animationEnable = true
             //item点击
-            setOnItemClickListener { adapter, view, position ->
-//                val intent = Intent(this, DetailActivity::class.java)
-//                intent.putExtra(DetailActivity.WEB_URL, mDataList[position].link)
-//                intent.putExtra(DetailActivity.WEB_TITLE, mDataList[position].title)
-//                startActivity(intent)
+            setOnItemClickListener { _, _, position ->
+                val intent = Intent(this@CollectActivity, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.WEB_URL, data[position].link)
+                intent.putExtra(DetailActivity.WEB_TITLE, data[position].title)
+                startActivity(intent)
             }
 
             //item子view点击
-            setOnItemChildClickListener { adapter, view, position ->
+            setOnItemChildClickListener { _, _, position ->
                 mPosition = position
-                val oid: Int = if (-1 < mDataList[position].originId)
-                    mDataList[position].originId
-                else -1
-                mViewModel.unCollect1(mDataList[position].id, oid)
+                val oid: Int = if (-1 < data[position].originId) data[position].originId else -1
+                mViewModel.unCollectByCollect(data[position].id, oid)
             }
+
             //加载更多
             loadMoreModule.setOnLoadMoreListener {
-                if (CURRENT_SIZE < TOTAL_COUNTER) {
+                if (mCurrentSize < mTotalCount) {
                     mCollectAdapter.loadMoreModule.loadMoreEnd(true)
                 } else {
-                    CURRENT_PAGE++
-                    mViewModel.getCollectList(CURRENT_PAGE)
+                    mCurrentPage++
+                    mViewModel.getCollectList(mCurrentPage)
                 }
             }
         }
@@ -73,8 +65,8 @@ class CollectActivity : BaseVmActivity<ActivityCollectBinding, CollectViewModel>
         )
         mBinding.swipeRefresh.setOnRefreshListener {
             mBinding.swipeRefresh.postDelayed({
-                CURRENT_PAGE = 0
-                mViewModel.getCollectList(CURRENT_PAGE)
+                mCurrentPage = 0
+                mViewModel.getCollectList(mCurrentPage)
                 mBinding.swipeRefresh.isRefreshing = false
             }, 1000)
         }
@@ -82,39 +74,44 @@ class CollectActivity : BaseVmActivity<ActivityCollectBinding, CollectViewModel>
 
     override fun initData() {
         super.initData()
-        mViewModel.getCollectList(CURRENT_PAGE)
+        mViewModel.getCollectList(mCurrentPage)
     }
 
     override fun observe() {
         super.observe()
 
         mViewModel.collectList.observe(this, {
-            CURRENT_SIZE = it.size
-            mDataList = it
-            mCollectAdapter.setList(it)
+            mCurrentSize = it.size
+            if (0 == mCurrentPage) {
+                if (it.isEmpty()) {
+                    mCollectAdapter.setList(null)
+                    mCollectAdapter.setEmptyView(R.layout.layout_empty_view)
+                } else {
+                    mCollectAdapter.setList(it)
+                }
+            } else {
+                mCollectAdapter.addData(it)
+                mCollectAdapter.loadMoreModule.loadMoreComplete()
+            }
         })
+
+        mViewModel.unCollectState.observe(this, {
+            if (it) {
+                ToastUtil.show("取消成功")
+                mCollectAdapter.data.removeAt(mPosition)
+                mCollectAdapter.notifyItemRemoved(mPosition)
+                if (mCollectAdapter.data.size == 0) {
+                    mCollectAdapter.setEmptyView(R.layout.layout_empty_view)
+                }
+            }
+        })
+
     }
 
-//    override fun login(msg: String) {
-//        showLoginDialog(msg)
-//    }
-
-    private fun showLoginDialog(msg: String) {
-        val builder = AlertDialog.Builder(this@CollectActivity)
-        builder.setTitle("提示")
-        builder.setMessage(msg)
-        builder.setPositiveButton("确定") { _, _ ->
-            startActivity(Intent(this, LoginActivity::class.java))
+    override fun setListener() {
+        super.setListener()
+        mBinding.toolbar.setNavigationOnClickListener {
+            super.onBackPressed()
         }
-        builder.setNegativeButton("取消") { _, _ ->
-            finish()
-        }
-        builder.create().show()
     }
-
-//    override fun unCollect(msg: String) {
-//        ToastUtil.show(msg)
-//        mCollectAdapter.remove(mPosition)
-//    }
-
 }

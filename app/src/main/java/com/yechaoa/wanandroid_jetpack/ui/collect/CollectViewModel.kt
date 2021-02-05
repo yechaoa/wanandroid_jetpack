@@ -18,12 +18,13 @@ class CollectViewModel : BaseViewModel() {
         )
     }
 
-    val data1 = MutableLiveData<Boolean>()
+    val unCollectState = MutableLiveData<Boolean>()
 
-    fun unCollect1(id: Int, originId: Int) {
+    fun unCollectByCollect(id: Int, originId: Int) {
         launch(
             block = {
-                val data = repository.unCollect1(id, originId)
+                val data = repository.unCollectByCollect(id, originId)
+                unCollectState.value = 0 == data.code()
             }
         )
     }

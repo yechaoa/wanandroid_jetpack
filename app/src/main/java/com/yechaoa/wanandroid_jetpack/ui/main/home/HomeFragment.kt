@@ -1,10 +1,13 @@
 package com.yechaoa.wanandroid_jetpack.ui.main.home
 
+import android.content.Intent
 import com.yechaoa.wanandroid_jetpack.base.BaseVmFragment
 import com.yechaoa.wanandroid_jetpack.databinding.FragmentHomeBinding
 import com.yechaoa.wanandroid_jetpack.ui.adapter.ArticleAdapter
 import com.yechaoa.wanandroid_jetpack.ui.adapter.BannerImageAdapter
+import com.yechaoa.wanandroid_jetpack.ui.detail.DetailActivity
 import com.yechaoa.yutilskt.DisplayUtil
+import com.yechaoa.yutilskt.ToastUtil
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.transformer.*
 import java.util.*
@@ -12,13 +15,8 @@ import kotlin.math.roundToInt
 
 class HomeFragment : BaseVmFragment<FragmentHomeBinding, HomeViewModel>() {
 
-    companion object {
-        private const val TOTAL_COUNTER = 20//每次加载数量
-        private var CURRENT_SIZE = 0//当前加载数量
-        private var CURRENT_PAGE = 0//当前加载页数
-    }
-
     private lateinit var mArticleAdapter: ArticleAdapter
+    private var mPosition = -1
 
     override fun getViewBinding(): FragmentHomeBinding {
         return FragmentHomeBinding.inflate(layoutInflater)
@@ -35,31 +33,31 @@ class HomeFragment : BaseVmFragment<FragmentHomeBinding, HomeViewModel>() {
             //开启加载动画
             animationEnable = true
             //item点击
-            setOnItemClickListener { adapter, view, position ->
-//                val intent = Intent(requireContext(), DetailActivity::class.java).apply {
-//                    putExtra(DetailActivity.WEB_URL, mDataList[position].link)
-//                    putExtra(DetailActivity.WEB_TITLE, mDataList[position].title)
-//                }
-//                startActivity(intent)
+            setOnItemClickListener { _, _, position ->
+                val intent = Intent(requireContext(), DetailActivity::class.java).apply {
+                    putExtra(DetailActivity.WEB_URL, mArticleAdapter.data[position].link)
+                    putExtra(DetailActivity.WEB_TITLE, mArticleAdapter.data[position].title)
+                }
+                startActivity(intent)
             }
 
             //item子view点击
-            setOnItemChildClickListener { adapter, view, position ->
-//                mPosition = position
-//                if (mDataList[position].collect) {
-//                    mHomePresenter.unCollect(mDataList[position].id)
-//                } else {
-//                    mHomePresenter.collect(mDataList[position].id)
-//                }
+            setOnItemChildClickListener { _, _, position ->
+                mPosition = position
+                if (data[position].collect) {
+                    mViewModel.unCollect(data[position].id)
+                } else {
+                    mViewModel.collect(data[position].id)
+                }
             }
             //加载更多
             loadMoreModule.setOnLoadMoreListener {
                 mBinding.recyclerView.postDelayed({
-                    if (CURRENT_SIZE < TOTAL_COUNTER) {
+                    if (mCurrentSize < mTotalCount) {
                         mArticleAdapter.loadMoreModule.loadMoreEnd(true)
                     } else {
-                        CURRENT_PAGE++
-                        mViewModel.getArticleList(CURRENT_PAGE)
+                        mCurrentPage++
+                        mViewModel.getArticleList(mCurrentPage)
                     }
                 }, 1000)
             }
@@ -71,7 +69,7 @@ class HomeFragment : BaseVmFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun initData() {
         super.initData()
         mViewModel.getBanner()
-        mViewModel.getArticleList(CURRENT_PAGE)
+        mViewModel.getArticleList(mCurrentPage)
     }
 
     override fun observe() {
@@ -91,22 +89,38 @@ class HomeFragment : BaseVmFragment<FragmentHomeBinding, HomeViewModel>() {
                 setDatas(bannerList)
                 start()
             }
-            mBinding.banner.setOnBannerListener { data, position ->
-//                val intent = Intent(requireContext(), DetailActivity::class.java).apply {
-//                    putExtra(DetailActivity.WEB_URL, bannerList[position].url)
-//                    putExtra(DetailActivity.WEB_TITLE, bannerList[position].title)
-//                }
-//                startActivity(intent)
+            mBinding.banner.setOnBannerListener { _, position ->
+                val intent = Intent(requireContext(), DetailActivity::class.java).apply {
+                    putExtra(DetailActivity.WEB_URL, bannerList[position].url)
+                    putExtra(DetailActivity.WEB_TITLE, bannerList[position].title)
+                }
+                startActivity(intent)
             }
         })
 
         mViewModel.articleList.observe(this, {
-            CURRENT_SIZE = it.size
-            if (0 == CURRENT_PAGE) {
+            mCurrentSize = it.size
+            if (0 == mCurrentPage) {
                 mArticleAdapter.setList(it)
             } else {
                 mArticleAdapter.addData(it)
                 mArticleAdapter.loadMoreModule.loadMoreComplete()
+            }
+        })
+
+        mViewModel.collectState.observe(this, {
+            if (it) {
+                ToastUtil.show("收藏成功")
+                mArticleAdapter.data[mPosition].collect = true
+                mArticleAdapter.notifyItemChanged(mPosition)
+            }
+        })
+
+        mViewModel.unCollectState.observe(this, {
+            if (it) {
+                ToastUtil.show("取消成功")
+                mArticleAdapter.data[mPosition].collect = false
+                mArticleAdapter.notifyItemChanged(mPosition)
             }
         })
     }

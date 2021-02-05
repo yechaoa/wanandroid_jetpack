@@ -29,4 +29,24 @@ class HomeViewModel : BaseViewModel() {
         )
     }
 
+    val collectState = MutableLiveData<Boolean>()
+
+    fun collect(id: Int) {
+        launch(
+            block = {
+                collectState.value = 0 == repository.collect(id).code()
+            }
+        )
+    }
+
+    val unCollectState = MutableLiveData<Boolean>()
+
+    fun unCollect(id: Int) {
+        launch(
+            block = {
+                unCollectState.value = 0 == repository.unCollectByArticle(id).code()
+            }
+        )
+    }
+
 }

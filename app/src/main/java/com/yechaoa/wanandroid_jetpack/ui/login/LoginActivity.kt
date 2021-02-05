@@ -32,7 +32,7 @@ class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>() {
     override fun viewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
 
     override fun initView() {
-        ImmersionBar.with(this).fitsSystemWindows(false).transparentStatusBar().init()
+        ImmersionBar.with(this).fitsSystemWindows(true).transparentStatusBar().statusBarDarkFont(true).init()
         setText()
     }
 

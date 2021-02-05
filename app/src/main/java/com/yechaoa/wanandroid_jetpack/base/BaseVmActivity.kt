@@ -12,6 +12,11 @@ abstract class BaseVmActivity<VB : ViewBinding, VM : BaseViewModel> : BaseActivi
 
     protected open lateinit var mViewModel: VM
 
+    //分页参数
+    protected open val mTotalCount = 20//每次加载数量
+    protected open var mCurrentSize = 0//当前加载数量
+    protected open var mCurrentPage = 0//当前加载页数
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViewModel()
@@ -60,5 +65,11 @@ abstract class BaseVmActivity<VB : ViewBinding, VM : BaseViewModel> : BaseActivi
      * 设置监听
      */
     open fun setListener() {}
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mCurrentSize = 0
+        mCurrentPage = 0
+    }
 
 }

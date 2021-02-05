@@ -10,6 +10,6 @@ class CollectRepository : BaseRepository() {
 
     suspend fun getCollectList(page: Int) = apiService().getCollectList(page).data()
 
-    suspend fun unCollect1(id: Int, originId: Int) = apiService().unCollect1(id, originId).data()
+    suspend fun unCollectByCollect(id: Int, originId: Int) = apiService().unCollectByCollect(id, originId)
 
 }

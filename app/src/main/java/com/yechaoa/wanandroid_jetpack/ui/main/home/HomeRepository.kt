@@ -12,4 +12,8 @@ class HomeRepository : BaseRepository() {
 
     suspend fun getArticleList(page: Int) = apiService().getArticleList(page).data()
 
+    suspend fun collect(id: Int) = apiService().collect(id)
+
+    suspend fun unCollectByArticle(id: Int) = apiService().unCollectByArticle(id)
+
 }

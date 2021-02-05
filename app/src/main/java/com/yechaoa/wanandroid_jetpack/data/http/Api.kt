@@ -12,8 +12,6 @@ import retrofit2.http.*
 interface Api {
 
     companion object {
-        const val isTest = false
-        const val isDev = false
         const val BASE_URL = "https://www.wanandroid.com/"
     }
 
@@ -37,7 +35,7 @@ interface Api {
     ): BaseBean<UserBean>
 
 
-    //-----------------------【首页相关】----------------------
+    //-----------------------【 首页 】----------------------
 
     //首页文章列表
     @GET("article/list/{page}/json")
@@ -108,12 +106,12 @@ interface Api {
 
     //取消收藏（文章列表）
     @POST("lg/uncollect_originId/{id}/json")
-    suspend fun unCollect(@Path("id") id: Int): BaseBean<String>
+    suspend fun unCollectByArticle(@Path("id") id: Int): BaseBean<String>
 
     //取消收藏（我的收藏页面）
     @FormUrlEncoded
     @POST("lg/uncollect/{id}/json")
-    suspend fun unCollect1(
+    suspend fun unCollectByCollect(
         @Path("id") id: Int,
         @Field("originId") originId: Int
     ): BaseBean<String>

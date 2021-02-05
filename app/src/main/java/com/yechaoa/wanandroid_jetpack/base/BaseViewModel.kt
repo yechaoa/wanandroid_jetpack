@@ -94,24 +94,9 @@ open class BaseViewModel : ViewModel() {
         when (e) {
             is ApiException -> {
                 when (e.code) {
-                    403 -> {
+                    -1001 -> {
                         if (showErrorToast) ToastUtil.show(e.message)
                         needLogin.value = true
-                    }
-                    400 -> {
-                        if (showErrorToast) ToastUtil.show(e.message)
-                    }
-                    -1 -> {
-                        if (showErrorToast) ToastUtil.show(e.message)
-                    }
-                    -50000 -> {
-                        if (showErrorToast) ToastUtil.show("-50000" + e.message)
-                    }
-                    5039 -> {
-                        if (showErrorToast) ToastUtil.show(e.message)
-                    }
-                    -1794 -> {
-                        if (showErrorToast) ToastUtil.show("操作过于频繁，请1分钟后再试")
                     }
                     // 其他错误
                     else -> {

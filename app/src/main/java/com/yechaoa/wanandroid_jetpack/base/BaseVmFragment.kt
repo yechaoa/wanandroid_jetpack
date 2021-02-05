@@ -9,10 +9,15 @@ import com.yechaoa.wanandroid_jetpack.common.MyConfig
 import com.yechaoa.wanandroid_jetpack.ui.login.LoginActivity
 import com.yechaoa.yutilskt.SpUtil
 
-abstract class BaseVmFragment<VB : ViewBinding,VM : BaseViewModel> : BaseFragment<VB>() {
+abstract class BaseVmFragment<VB : ViewBinding, VM : BaseViewModel> : BaseFragment<VB>() {
 
     protected lateinit var mViewModel: VM
     private var lazyLoaded = false
+
+    //分页参数
+    protected open val mTotalCount = 20//每次加载数量
+    protected open var mCurrentSize = 0//当前加载数量
+    protected open var mCurrentPage = 0//当前加载页数
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -76,5 +81,12 @@ abstract class BaseVmFragment<VB : ViewBinding,VM : BaseViewModel> : BaseFragmen
      * 设置监听
      */
     open fun setListener() {}
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        //重置
+        mCurrentSize = 0
+        mCurrentPage = 0
+    }
 
 }

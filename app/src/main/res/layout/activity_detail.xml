@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".ui.collect.CollectActivity">
+    tools:context=".ui.detail.DetailActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -16,32 +16,22 @@
         app:navigationIcon="@mipmap/ic_back_white">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="我的收藏"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_18"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
+    <FrameLayout
+        android:id="@+id/web_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.collect.CollectActivity">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_article" />
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
-
-
-
