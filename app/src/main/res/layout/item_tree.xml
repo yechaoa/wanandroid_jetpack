@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
     android:background="@color/white"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
@@ -21,10 +23,10 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="标题"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_16"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="标题" />
 
         <ImageView
             android:id="@+id/iv_toggle"

@@ -3,12 +3,13 @@ package com.yechaoa.wanandroid_jetpack.ui.adapter
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.yechaoa.wanandroid_jetpack.R
-import com.yechaoa.wanandroid_kotlin.bean.Children
-import com.yechaoa.wanandroid_kotlin.bean.Tree
+import com.yechaoa.wanandroid_jetpack.data.bean.Tree
+import com.yechaoa.wanandroid_jetpack.util.startImageRotate
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import com.zhy.view.flowlayout.TagFlowLayout
@@ -18,9 +19,7 @@ import java.util.*
  * Created by yechaoa on 2021/2/4.
  * Describe :
  */
-class TreeAdapter(data: MutableList<Tree>) :
-    BaseQuickAdapter<Tree, BaseViewHolder>(R.layout.item_tree, data),
-    TagFlowLayout.OnTagClickListener {
+class TreeAdapter : BaseQuickAdapter<Tree, BaseViewHolder>(R.layout.item_tree), TagFlowLayout.OnTagClickListener {
 
     override fun convert(holder: BaseViewHolder, item: Tree) {
         holder.setText(R.id.tv_tree_title, item.name)
@@ -28,20 +27,17 @@ class TreeAdapter(data: MutableList<Tree>) :
         val flowLayout = holder.getView<TagFlowLayout>(R.id.flow_layout)
 
         //根据状态处理显示结果
-//        if (item.isShow){
-//            flowLayout.visibility =View.VISIBLE
-//            helper.setImageResource(R.id.iv_toggle,R.drawable.ic_up)
-//        }else{
-//            flowLayout.visibility =View.GONE
-//            helper.setImageResource(R.id.iv_toggle,R.drawable.ic_down)
-//        }
+        if (item.isShow) {
+            flowLayout.visibility = View.VISIBLE
+            holder.setImageResource(R.id.iv_toggle, R.mipmap.ic_up)
+        } else {
+            flowLayout.visibility = View.GONE
+            holder.setImageResource(R.id.iv_toggle, R.mipmap.ic_down)
+        }
 
-        flowLayout.adapter = object : TagAdapter<Children>(item.children) {
-            override fun getView(parent: FlowLayout, position: Int, s: Children): View {
-                val tvTag = LayoutInflater.from(context).inflate(
-                    R.layout.item_tree_item,
-                    flowLayout, false
-                ) as TextView
+        flowLayout.adapter = object : TagAdapter<Tree.Children>(item.children) {
+            override fun getView(parent: FlowLayout, position: Int, s: Tree.Children): View {
+                val tvTag = LayoutInflater.from(context).inflate(R.layout.item_tree_item, flowLayout, false) as TextView
                 tvTag.text = s.name
                 tvTag.setTextColor(randomColor())
                 return tvTag
@@ -64,7 +60,7 @@ class TreeAdapter(data: MutableList<Tree>) :
      * 给adapter添加事件方法
      */
     fun setOnItemTagClickListener(listener: OnItemTagClickListener?) {
-        mOnItemTagClickListener = listener
+        this.mOnItemTagClickListener = listener
     }
 
     /**

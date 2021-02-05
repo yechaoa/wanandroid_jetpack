@@ -23,6 +23,7 @@ import com.yechaoa.wanandroid_jetpack.ui.main.navi.NaviFragment
 import com.yechaoa.wanandroid_jetpack.ui.main.pro.ProjectFragment
 import com.yechaoa.wanandroid_jetpack.ui.main.tree.TreeFragment
 import com.yechaoa.yutilskt.ActivityUtil
+import com.yechaoa.yutilskt.ShareUtil
 import com.yechaoa.yutilskt.SpUtil
 import com.yechaoa.yutilskt.ToastUtil
 
@@ -100,7 +101,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     startActivity(Intent(this, CollectActivity::class.java))
                 }
                 R.id.nav_share -> {
-                    shareProject()
+                    ShareUtil.shareText(getString(R.string.wanandroid), getString(R.string.github))
                 }
                 R.id.nav_about -> {
                     startActivity(Intent(this, AboutActivity::class.java))
@@ -170,20 +171,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
             false
         }
-    }
-
-    /**
-     * 调用系统的分享功能
-     */
-    private fun shareProject() {
-        val intent = Intent().apply {
-            action = Intent.ACTION_SEND
-            type = "text/plain"
-            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.wanandroid))
-            putExtra(Intent.EXTRA_TEXT, getString(R.string.github))
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-        startActivity(Intent.createChooser(intent, getString(R.string.wanandroid)))
     }
 
     /**
