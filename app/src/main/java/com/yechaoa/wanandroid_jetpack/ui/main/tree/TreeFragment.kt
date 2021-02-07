@@ -1,11 +1,13 @@
 package com.yechaoa.wanandroid_jetpack.ui.main.tree
 
+import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yechaoa.wanandroid_jetpack.base.BaseVmFragment
 import com.yechaoa.wanandroid_jetpack.databinding.FragmentTreeBinding
 import com.yechaoa.wanandroid_jetpack.ui.adapter.TreeAdapter
+import com.yechaoa.wanandroid_jetpack.ui.main.tree.child.TreeChildActivity
 import com.zhy.view.flowlayout.FlowLayout
 
 class TreeFragment : BaseVmFragment<FragmentTreeBinding, TreeViewModel>() {
@@ -50,12 +52,12 @@ class TreeFragment : BaseVmFragment<FragmentTreeBinding, TreeViewModel>() {
             //子view标签点击事件
             setOnItemTagClickListener(object : TreeAdapter.OnItemTagClickListener {
                 override fun onItemTagClick(view: View?, position: Int, parent: FlowLayout?): Boolean {
-//                    val intent = Intent(requireContext(), TreeChildActivity::class.java).apply {
-//                        putExtra(TreeChildActivity.TITLE, mTreeAdapter.data[mPosition].name)
-//                        putExtra(TreeChildActivity.CID, mTreeAdapter.data[mPosition].children)
-//                        putExtra(TreeChildActivity.POSITION, position)
-//                    }
-//                    startActivity(intent)
+                    val intent = Intent(requireContext(), TreeChildActivity::class.java).apply {
+                        putExtra(TreeChildActivity.TITLE, mTreeAdapter.data[mPosition].name)
+                        putExtra(TreeChildActivity.CID, mTreeAdapter.data[mPosition].children)
+                        putExtra(TreeChildActivity.POSITION, position)
+                    }
+                    startActivity(intent)
                     return true
                 }
             })

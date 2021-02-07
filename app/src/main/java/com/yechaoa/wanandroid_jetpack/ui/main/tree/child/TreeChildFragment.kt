@@ -1,28 +1,47 @@
-package com.yechaoa.wanandroid_jetpack.ui.main.home
+package com.yechaoa.wanandroid_jetpack.ui.main.tree.child
+
 
 import android.content.Intent
+import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.yechaoa.wanandroid_jetpack.base.BaseVmFragment
-import com.yechaoa.wanandroid_jetpack.databinding.FragmentHomeBinding
+import com.yechaoa.wanandroid_jetpack.data.bean.Article
+import com.yechaoa.wanandroid_jetpack.databinding.FragmentChildBinding
 import com.yechaoa.wanandroid_jetpack.ui.adapter.ArticleAdapter
-import com.yechaoa.wanandroid_jetpack.ui.adapter.BannerImageAdapter
 import com.yechaoa.wanandroid_jetpack.ui.detail.DetailActivity
-import com.yechaoa.yutilskt.DisplayUtil
 import com.yechaoa.yutilskt.ToastUtil
-import com.youth.banner.indicator.CircleIndicator
-import com.youth.banner.transformer.*
-import java.util.*
-import kotlin.math.roundToInt
 
-class HomeFragment : BaseVmFragment<FragmentHomeBinding, HomeViewModel>() {
+/**
+ * A simple [Fragment] subclass.
+ */
+class TreeChildFragment : BaseVmFragment<FragmentChildBinding, TreeChildViewModel>() {
 
-    private lateinit var mArticleAdapter: ArticleAdapter
-    private var mPosition = -1
+    companion object {
+        const val CID: String = "cid"
 
-    override fun getViewBinding(): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(layoutInflater)
+        /**
+         * 创建fragment
+         */
+        fun newInstance(cid: Int): TreeChildFragment {
+            val projectChildFragment = TreeChildFragment()
+            val bundle = Bundle()
+            bundle.putInt(CID, cid)
+            projectChildFragment.arguments = bundle
+            return projectChildFragment
+        }
     }
 
-    override fun viewModelClass(): Class<HomeViewModel> = HomeViewModel::class.java
+    private var mCid: Int = 0
+    private lateinit var mArticleAdapter: ArticleAdapter
+    private var mPosition: Int = 0
+
+    override fun viewModelClass(): Class<TreeChildViewModel> {
+        return TreeChildViewModel::class.java
+    }
+
+    override fun getViewBinding(): FragmentChildBinding {
+        return FragmentChildBinding.inflate(layoutInflater)
+    }
 
     override fun initView() {
         initRecyclerView()
@@ -52,14 +71,12 @@ class HomeFragment : BaseVmFragment<FragmentHomeBinding, HomeViewModel>() {
             }
             //加载更多
             loadMoreModule.setOnLoadMoreListener {
-                mBinding.recyclerView.postDelayed({
-                    if (mCurrentSize < mTotalCount) {
-                        mArticleAdapter.loadMoreModule.loadMoreEnd(true)
-                    } else {
-                        mCurrentPage++
-                        mViewModel.getArticleList(mCurrentPage)
-                    }
-                }, 500)
+                if (mCurrentSize < mTotalCount) {
+                    mArticleAdapter.loadMoreModule.loadMoreEnd(true)
+                } else {
+                    mCurrentPage++
+                    mViewModel.getTreeChild(mCurrentPage, mCid)
+                }
             }
         }
 
@@ -67,37 +84,12 @@ class HomeFragment : BaseVmFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     override fun initData() {
-        super.initData()
-        mViewModel.getBanner()
-        mViewModel.getArticleList(mCurrentPage)
+        mCid = arguments?.getInt(CID)!!
+        mViewModel.getTreeChild(mCurrentPage, mCid)
     }
 
     override fun observe() {
         super.observe()
-        mViewModel.bannerList.observe(this, { bannerList ->
-            //动态设置高度
-            val layoutParams = mBinding.banner.layoutParams
-            layoutParams.height = (DisplayUtil.getScreenWidth() / 1.99).roundToInt()
-
-            mBinding.banner.apply {
-                addBannerLifecycleObserver(this@HomeFragment)
-                setBannerGalleryEffect(8, 5)
-                setPageTransformer(ScaleInTransformer())
-                addPageTransformer(AlphaPageTransformer())
-                indicator = CircleIndicator(requireContext())
-                adapter = BannerImageAdapter(bannerList)
-                setDatas(bannerList)
-                start()
-            }
-            mBinding.banner.setOnBannerListener { _, position ->
-                val intent = Intent(requireContext(), DetailActivity::class.java).apply {
-                    putExtra(DetailActivity.WEB_URL, bannerList[position].url)
-                    putExtra(DetailActivity.WEB_TITLE, bannerList[position].title)
-                }
-                startActivity(intent)
-            }
-        })
-
         mViewModel.articleList.observe(this, {
             mCurrentSize = it.size
             if (0 == mCurrentPage) {
