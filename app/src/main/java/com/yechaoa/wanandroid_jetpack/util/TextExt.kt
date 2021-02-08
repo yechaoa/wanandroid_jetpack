@@ -1,5 +1,6 @@
 package com.yechaoa.wanandroid_jetpack.util
 
+import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -9,6 +10,18 @@ import com.yechaoa.wanandroid_jetpack.R
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
+
+/**
+ * 随机Color 避免纯色没有从255取值
+ */
+fun randomColor(): Int {
+    Random().run {
+        val red = nextInt(210)
+        val green = nextInt(210)
+        val blue = nextInt(210)
+        return Color.rgb(red, green, blue)
+    }
+}
 
 /**
  * 把搜索关键字变色，默认红色

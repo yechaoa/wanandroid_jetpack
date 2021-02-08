@@ -1,11 +1,9 @@
 package com.yechaoa.wanandroid_jetpack.ui.main.tree.child
 
-
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.yechaoa.wanandroid_jetpack.base.BaseVmFragment
-import com.yechaoa.wanandroid_jetpack.data.bean.Article
 import com.yechaoa.wanandroid_jetpack.databinding.FragmentChildBinding
 import com.yechaoa.wanandroid_jetpack.ui.adapter.ArticleAdapter
 import com.yechaoa.wanandroid_jetpack.ui.detail.DetailActivity
@@ -72,7 +70,7 @@ class TreeChildFragment : BaseVmFragment<FragmentChildBinding, TreeChildViewMode
             //加载更多
             loadMoreModule.setOnLoadMoreListener {
                 if (mCurrentSize < mTotalCount) {
-                    mArticleAdapter.loadMoreModule.loadMoreEnd(true)
+                    loadMoreModule.loadMoreEnd(true)
                 } else {
                     mCurrentPage++
                     mViewModel.getTreeChild(mCurrentPage, mCid)

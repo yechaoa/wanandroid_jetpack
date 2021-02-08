@@ -37,4 +37,5 @@ ext {
     brvha_version = "3.0.6"
     glide_version = "4.11.0"
     flowLayout_version = "1.1.2"
+    vertical_version = "1.2.9"
 }

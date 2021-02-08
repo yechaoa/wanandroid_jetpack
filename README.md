@@ -18,7 +18,7 @@
 
 * Android Studio 4.1.1
 * Kotlin 1.4.21
-* Gradle 4.0.2
+* Gradle 6.1.1
 
 
 <br>

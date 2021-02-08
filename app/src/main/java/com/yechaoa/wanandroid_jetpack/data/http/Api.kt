@@ -2,7 +2,6 @@ package com.yechaoa.wanandroid_jetpack.data.http
 
 import com.yechaoa.wanandroid_jetpack.base.BaseBean
 import com.yechaoa.wanandroid_jetpack.data.bean.*
-import com.yechaoa.wanandroid_kotlin.bean.*
 import retrofit2.http.*
 
 /**
@@ -77,7 +76,7 @@ interface Api {
     suspend fun getProjectChild(
         @Path("page") page: Int,
         @Query("cid") cid: Int
-    ): BaseBean<ProjectChild>
+    ): BaseBean<Article>
 
 
     //-----------------------【 搜索 】----------------------

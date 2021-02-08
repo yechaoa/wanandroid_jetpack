@@ -106,6 +106,9 @@ dependencies {
     /*FlowLayout*/
     implementation "com.hyman:flowlayout-lib:$flowLayout_version"
 
+    /*VerticalTabLayout*/
+    implementation "q.rorbin:VerticalTabLayout:$vertical_version"
+
     /*room*/
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"

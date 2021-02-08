@@ -1,31 +1,46 @@
 package com.yechaoa.wanandroid_jetpack.ui.main.pro
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import com.yechaoa.wanandroid_jetpack.R
+import com.yechaoa.wanandroid_jetpack.base.BaseVmFragment
+import com.yechaoa.wanandroid_jetpack.databinding.FragmentProjectBinding
+import com.yechaoa.wanandroid_jetpack.ui.adapter.CommonViewPagerAdapter
+import java.util.ArrayList
 
-class ProjectFragment : Fragment() {
+class ProjectFragment : BaseVmFragment<FragmentProjectBinding, ProjectViewModel>() {
 
-    private lateinit var notificationsViewModel: PeojectViewModel
-
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        notificationsViewModel =
-                ViewModelProviders.of(this).get(PeojectViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_navi, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+    override fun getViewBinding(): FragmentProjectBinding {
+        return FragmentProjectBinding.inflate(layoutInflater)
     }
+
+    override fun viewModelClass(): Class<ProjectViewModel> {
+        return ProjectViewModel::class.java
+    }
+
+    override fun initView() {
+        mBinding.tabLayout.setupWithViewPager(mBinding.viewPager)
+    }
+
+    override fun initData() {
+        super.initData()
+        mViewModel.getProject()
+    }
+
+    override fun observe() {
+        super.observe()
+        mViewModel.proList.observe(this, {
+            //得到标题集合
+            val titles: MutableList<String> = ArrayList()
+            for (i in it.indices) {
+                titles.add(it[i].name)
+            }
+
+            //创建Fragment集合 并设置为ViewPager
+            val commonViewPagerAdapter = CommonViewPagerAdapter(childFragmentManager, titles)
+            for (i in titles.indices) {
+                commonViewPagerAdapter.addFragment(ProjectChildFragment.newInstance(it[i].id))
+            }
+            mBinding.viewPager.adapter = commonViewPagerAdapter
+            mBinding.viewPager.currentItem = 0
+        })
+    }
+
 }

@@ -1,7 +1,7 @@
-package com.yechaoa.wanandroid_kotlin.bean
+package com.yechaoa.wanandroid_jetpack.data.bean
 
 /**
- * Created by yechao on 2020/1/20/020.
+ * Created by yechaoa on 2021/2/8.
  * Describe :
  */
 data class Project(

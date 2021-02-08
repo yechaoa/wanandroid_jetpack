@@ -1,19 +1,16 @@
 package com.yechaoa.wanandroid_jetpack.ui.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.yechaoa.wanandroid_jetpack.R
 import com.yechaoa.wanandroid_jetpack.data.bean.Tree
-import com.yechaoa.wanandroid_jetpack.util.startImageRotate
+import com.yechaoa.wanandroid_jetpack.util.randomColor
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import com.zhy.view.flowlayout.TagFlowLayout
-import java.util.*
 
 /**
  * Created by yechaoa on 2021/2/4.
@@ -71,12 +68,4 @@ class TreeAdapter : BaseQuickAdapter<Tree, BaseViewHolder>(R.layout.item_tree), 
         return true
     }
 
-    fun randomColor(): Int {
-        Random().run {
-            val red = nextInt(210)
-            val green = nextInt(210)
-            val blue = nextInt(210)
-            return Color.rgb(red, green, blue)
-        }
-    }
 }

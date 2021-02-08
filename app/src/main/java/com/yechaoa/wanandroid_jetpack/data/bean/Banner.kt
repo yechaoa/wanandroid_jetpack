@@ -1,7 +1,7 @@
 package com.yechaoa.wanandroid_jetpack.data.bean
 
 /**
- * Created by yechao on 2020/1/19/019.
+ * Created by yechaoa on 2021/2/5.
  * Describe :
  */
 data class Banner(
