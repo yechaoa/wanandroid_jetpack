@@ -1,6 +1,8 @@
 package com.yechaoa.wanandroid_jetpack.ui.adapter
 
+import android.os.Build
 import android.text.Html
+import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
@@ -18,9 +20,10 @@ class CollectAdapter : BaseQuickAdapter<Collect.CollectDetail, BaseViewHolder>(R
         addChildClickViewIds(R.id.article_favorite)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun convert(holder: BaseViewHolder, item: Collect.CollectDetail) {
         //fromHtml，因为搜索结果中的title中含有html标签
-        holder.setText(R.id.article_title, Html.fromHtml(item.title))
+        holder.setText(R.id.article_title, Html.fromHtml(item.title, Html.FROM_HTML_MODE_COMPACT))
         holder.setText(R.id.article_chapter, item.chapterName)
         holder.setText(R.id.article_date, item.niceDate)
         Glide.with(context).load(R.mipmap.ic_like_checked).into(holder.getView(R.id.article_favorite))

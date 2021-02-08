@@ -3,11 +3,8 @@ package com.yechaoa.wanandroid_jetpack.ui.about
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.AssetManager
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
-import android.view.MenuItem
-import android.view.View
 import com.yechaoa.wanandroid_jetpack.R
 import com.yechaoa.wanandroid_jetpack.base.BaseActivity
 import com.yechaoa.wanandroid_jetpack.databinding.ActivityAboutBinding
@@ -25,8 +22,8 @@ class AboutActivity : BaseActivity<ActivityAboutBinding>() {
     }
 
     @SuppressLint("SetTextI18n")
-    override fun init() {
-        super.init()
+    override fun initialize() {
+        super.initialize()
 
         mBinding.toolbar.setNavigationOnClickListener {
             super.onBackPressed()
@@ -47,24 +44,9 @@ class AboutActivity : BaseActivity<ActivityAboutBinding>() {
 
         mBinding.fab.setOnClickListener {
             ShareUtil.shareText(getString(R.string.wanandroid), getString(R.string.github))
-            shareProject()
         }
 
         setTypeface()
-    }
-
-    /**
-     * 调用系统的分享功能
-     */
-    private fun shareProject() {
-        val intent = Intent().apply {
-            action = Intent.ACTION_SEND
-            type = "text/plain"
-            putExtra(Intent.EXTRA_SUBJECT, "玩安卓")
-            putExtra(Intent.EXTRA_TEXT, "https://github.com/yechaoa/wanandroid_kotlin")
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-        startActivity(Intent.createChooser(intent, "玩安卓"))
     }
 
     /**
@@ -80,17 +62,6 @@ class AboutActivity : BaseActivity<ActivityAboutBinding>() {
         mContentAboutBinding.tvGithub.typeface = typeface
         mContentAboutBinding.tvApi.typeface = typeface
         mContentAboutBinding.tvLibrary.typeface = typeface
-    }
-
-    /**
-     * 返回键
-     */
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
     }
 
 }

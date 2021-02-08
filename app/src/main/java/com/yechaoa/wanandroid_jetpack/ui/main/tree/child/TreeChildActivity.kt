@@ -17,8 +17,8 @@ class TreeChildActivity : BaseActivity<ActivityTreeChildBinding>() {
         return ActivityTreeChildBinding.inflate(layoutInflater)
     }
 
-    override fun init() {
-        super.init()
+    override fun initialize() {
+        super.initialize()
         //初始化toolbar
         val title = intent.getStringExtra(TITLE as String?)
         mBinding.tvTitle.text = title

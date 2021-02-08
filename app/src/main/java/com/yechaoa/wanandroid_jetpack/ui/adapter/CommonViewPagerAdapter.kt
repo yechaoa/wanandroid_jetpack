@@ -14,11 +14,11 @@ class CommonViewPagerAdapter : FragmentPagerAdapter {
     private var mTitles: List<String>? = null
     private var mFragments: MutableList<Fragment> = ArrayList()
 
-    constructor(fm: FragmentManager?, titles: List<String>?) : super(fm!!) {
+    constructor(fm: FragmentManager, titles: List<String>?) : super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         mTitles = titles
     }
 
-    constructor(fm: FragmentManager?) : super(fm!!)
+    constructor(fm: FragmentManager) : super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
 
     fun addFragment(fragment: Fragment) {
         mFragments.add(fragment)
@@ -32,7 +32,7 @@ class CommonViewPagerAdapter : FragmentPagerAdapter {
         return mFragments.size
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return mTitles!![position]
     }
 

@@ -7,8 +7,8 @@ import com.yechaoa.wanandroid_jetpack.R
 import com.yechaoa.wanandroid_jetpack.base.BaseActivity
 import com.yechaoa.wanandroid_jetpack.common.MyConfig
 import com.yechaoa.wanandroid_jetpack.databinding.ActivitySplashBinding
-import com.yechaoa.wanandroid_jetpack.ui.main.MainActivity
 import com.yechaoa.wanandroid_jetpack.ui.login.LoginActivity
+import com.yechaoa.wanandroid_jetpack.ui.main.MainActivity
 import com.yechaoa.wanandroid_jetpack.util.setOnclickNoRepeat
 import com.yechaoa.yutilskt.SpUtil
 
@@ -20,8 +20,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         return ActivitySplashBinding.inflate(layoutInflater)
     }
 
-    override fun init() {
-        super.init()
+    override fun initialize() {
+        super.initialize()
         ImmersionBar.with(this).fitsSystemWindows(true).barColor(R.color.transparent).init()
         setListener()
     }

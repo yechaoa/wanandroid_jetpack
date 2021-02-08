@@ -10,19 +10,42 @@
 * [玩安卓 Java版本](https://github.com/yechaoa/wanandroid_java)
 * [玩安卓 小程序版本](https://github.com/yechaoa/wanandroid_mini)
 * [玩安卓 Kotlin版本](https://github.com/yechaoa/wanandroid_kotlin)
+* [玩安卓 Jetpack版本](https://github.com/yechaoa/wanandroid_jetpack)
 
 <br>
 
+# :fire:截图
+| <img src="/screenshot/home.png" width="285"/> | <img src="/screenshot/tree.png" width="285"/> | <img src="/screenshot/navi.png" width="285"/> | <img src="/screenshot/pro.png" width="285"/> |
+| :--: | :--: | :--: | :--: |
+| 首页 | 体系 | 导航 | 项目 |
+
+# :beers:你能学到
+
+* MVVM的开发架构、Jetpack组件的使用等
+* Kotlin语法特性、标准函数、扩展函数等
+* Material Design控件的使用等
+
+# :pencil:Todo
+- [ ] 注册
+- [ ] 搜索
 
 # :package:开发环境
-
-* Android Studio 4.1.1
+* Android Studio 4.1.2
 * Kotlin 1.4.21
-* Gradle 6.1.1
 
+# :point_right:感谢
+* [YUtils](https://github.com/yechaoa/YUtils)
+* [RxJava](https://github.com/ReactiveX/RxJava)
+* [Retrofit](https://github.com/square/retrofit)
+* [OkHttp](https://github.com/square/okhttp)
+* [Glide](https://github.com/bumptech/glide)
+* [Banner](https://github.com/youth5201314/banner)
+* [VerticalTabLayout](https://github.com/qstumn/VerticalTabLayout)
+* [AgentWeb](https://github.com/Justson/AgentWeb)
+* [BRVAH](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
+* [flowlayout](https://github.com/hongyangAndroid/FlowLayout)
 
 <br>
-
 
 
 ```

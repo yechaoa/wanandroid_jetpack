@@ -63,8 +63,7 @@ class NaviFragment : BaseVmFragment<FragmentNaviBinding, NaviViewModel>() {
         mBinding.flowLayout.adapter = object : TagAdapter<Article.ArticleDetail>(articles) {
             override fun getView(parent: FlowLayout, position: Int, s: Article.ArticleDetail): View {
                 val tvTag = LayoutInflater.from(activity).inflate(
-                    R.layout.item_navi,
-                    mBinding.flowLayout, false
+                    R.layout.item_navi, mBinding.flowLayout, false
                 ) as TextView
                 tvTag.text = s.title
                 tvTag.setTextColor(randomColor())
@@ -96,7 +95,7 @@ class NaviFragment : BaseVmFragment<FragmentNaviBinding, NaviViewModel>() {
         }
     }
 
-    internal class MyTabAdapter(private val naviList: MutableList<Navi>) : TabAdapter {
+    inner class MyTabAdapter(private val naviList: MutableList<Navi>) : TabAdapter {
 
         override fun getCount(): Int {
             return naviList.size

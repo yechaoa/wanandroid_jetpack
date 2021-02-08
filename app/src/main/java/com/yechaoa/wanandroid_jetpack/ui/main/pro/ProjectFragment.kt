@@ -3,7 +3,7 @@ package com.yechaoa.wanandroid_jetpack.ui.main.pro
 import com.yechaoa.wanandroid_jetpack.base.BaseVmFragment
 import com.yechaoa.wanandroid_jetpack.databinding.FragmentProjectBinding
 import com.yechaoa.wanandroid_jetpack.ui.adapter.CommonViewPagerAdapter
-import java.util.ArrayList
+import java.util.*
 
 class ProjectFragment : BaseVmFragment<FragmentProjectBinding, ProjectViewModel>() {
 

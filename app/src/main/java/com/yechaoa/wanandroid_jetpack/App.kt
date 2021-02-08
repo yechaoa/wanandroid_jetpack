@@ -6,28 +6,22 @@ import com.yechaoa.wanandroid_jetpack.common.CrashHandler
 import com.yechaoa.yutilskt.LogUtil
 import com.yechaoa.yutilskt.YUtils
 
-
 /**
- * Created by yechao on 2020/10/9.
+ * Created by yechao on 2021/2/5.
  * Describe :
  */
 class App : Application() {
 
     companion object {
-        lateinit var instance: App
-
         //控制三方库的编译模式
-        private const val isDebugMode = false
+        private const val isDebugMode = true
     }
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
-
         initUiMode()
-
-        CrashHandler.instance.init(this)
         initYUtils()
+        CrashHandler.instance.init(this)
     }
 
     private fun initUiMode() {

@@ -26,7 +26,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
             .navigationBarColor(R.color.transparent)
             .init()
 
-        init()
+        initialize()
     }
 
     abstract fun getViewBinding(): VB
@@ -34,7 +34,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     /**
      * 命名与子类要区分，否则会先调用BaseActivity中同名方法，再调用BaseVmActivity中同名方法，可能会出现调用顺序导致的错误
      */
-    open fun init() {}
+    open fun initialize() {}
 
     override fun onDestroy() {
         super.onDestroy()

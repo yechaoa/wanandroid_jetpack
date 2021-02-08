@@ -7,7 +7,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.snackbar.Snackbar
 import com.yechaoa.wanandroid_jetpack.R
 import com.yechaoa.wanandroid_jetpack.base.BaseActivity
 import com.yechaoa.wanandroid_jetpack.common.MyConfig
@@ -36,19 +35,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         return ActivityMainBinding.inflate(layoutInflater)
     }
 
-    override fun init() {
-        super.init()
+    override fun initialize() {
+        super.initialize()
         //include 写法
         mAppBarMainBinding = mBinding.appBarMain
         mContentMainBinding = mBinding.appBarMain.contentMain
 
         mAppBarMainBinding.toolbar.title = resources.getString(R.string.app_name)
-
-        mAppBarMainBinding.fab.setOnClickListener {
-            Snackbar.make(it, "这是一个提示", Snackbar.LENGTH_SHORT).setAction("按钮") {
-                ToastUtil.show("点击了按钮")
-            }.show()
-        }
 
         initActionBarDrawer()
 
@@ -69,7 +62,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         mBinding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
     }
-
 
     /**
      * 初始化Fragment
@@ -107,17 +99,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     startActivity(Intent(this, AboutActivity::class.java))
                 }
                 R.id.nav_logout -> {
-                    val builder = AlertDialog.Builder(this@MainActivity)
-                    builder.setTitle("提示")
-                    builder.setMessage("确定退出？")
-                    builder.setPositiveButton("确定") { _, _ ->
-                        SpUtil.setBoolean(MyConfig.IS_LOGIN, false)
-                        SpUtil.removeByKey(MyConfig.COOKIE)
-                        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-                        finish()
+                    AlertDialog.Builder(this@MainActivity).apply {
+                        setTitle("提示")
+                        setMessage("确定退出？")
+                        setPositiveButton("确定") { _, _ ->
+                            SpUtil.setBoolean(MyConfig.IS_LOGIN, false)
+                            SpUtil.removeByKey(MyConfig.COOKIE)
+                            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                            finish()
+                        }
+                        setNegativeButton("取消", null)
+                        create()
+                        show()
                     }
-                    builder.setNegativeButton("取消", null)
-                    builder.create().show()
                 }
             }
 
@@ -137,7 +131,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
             override fun onPageSelected(position: Int) {
                 mAppBarMainBinding.contentMain.bottomNavigation.menu.getItem(position).isChecked = true
-                //设置checked为true，但是不能触发ItemSelected事件，所以滑动时也要设置一下标题
                 when (position) {
                     0 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.app_name)
                     1 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_tree)

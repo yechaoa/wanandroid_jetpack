@@ -25,12 +25,10 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
+        initialize()
     }
 
-    //abstract fun getLayoutId(): Int
-
-    open fun init() {}
+    open fun initialize() {}
 
     override fun onDestroy() {
         super.onDestroy()

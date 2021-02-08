@@ -6,9 +6,8 @@
     android:background="@drawable/side_nav_bar"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/dp_16"
+    android:paddingHorizontal="@dimen/dp_16"
     android:paddingTop="@dimen/dp_26"
-    android:paddingRight="@dimen/dp_16"
     android:paddingBottom="@dimen/dp_16"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 

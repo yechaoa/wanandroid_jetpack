@@ -12,8 +12,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Created by yechao on 2020/2/4.
- * Describe :
+ * Created by yechaoa on 2020/2/4.
+ * Describe : 异常日志
  */
 class CrashHandler : Thread.UncaughtExceptionHandler {
 

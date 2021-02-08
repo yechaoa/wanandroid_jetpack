@@ -3,6 +3,8 @@ package com.yechaoa.wanandroid_jetpack.ui.detail
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.os.Build
+import android.text.Html
 import android.view.Gravity
 import android.view.KeyEvent
 import android.webkit.WebResourceRequest
@@ -10,6 +12,7 @@ import android.webkit.WebView
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import com.just.agentweb.AgentWeb
 import com.just.agentweb.WebViewClient
 import com.yechaoa.wanandroid_jetpack.base.BaseActivity
@@ -29,9 +32,10 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>() {
         return ActivityDetailBinding.inflate(layoutInflater)
     }
 
-    override fun init() {
-        super.init()
-        mBinding.tvTitle.text = intent.getStringExtra(WEB_TITLE)
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun initialize() {
+        super.initialize()
+        mBinding.tvTitle.text = Html.fromHtml(intent.getStringExtra(WEB_TITLE), Html.FROM_HTML_MODE_COMPACT)
         setListener()
         initAgentWeb()
     }

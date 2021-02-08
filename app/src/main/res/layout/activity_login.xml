@@ -34,8 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="@dimen/dp_20"
-                android:paddingRight="@dimen/dp_20"
+                android:paddingHorizontal="@dimen/dp_20"
                 android:text="@string/username"
                 android:textSize="@dimen/sp_16" />
 
@@ -64,8 +63,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="@dimen/dp_20"
-                android:paddingRight="@dimen/dp_20"
+                android:paddingHorizontal="@dimen/dp_20"
                 android:text="@string/password"
                 android:textSize="@dimen/sp_16" />
 
@@ -93,8 +91,7 @@
         android:layout_margin="@dimen/dp_10"
         android:alpha="0.8"
         android:backgroundTint="@color/colorPrimary"
-        android:paddingLeft="@dimen/dp_80"
-        android:paddingRight="@dimen/dp_80"
+        android:paddingHorizontal="@dimen/dp_80"
         android:text="@string/login"
         android:textColor="@android:color/white"
         android:textSize="@dimen/sp_15"

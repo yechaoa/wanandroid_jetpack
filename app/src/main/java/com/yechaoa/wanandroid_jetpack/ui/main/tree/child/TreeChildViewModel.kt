@@ -3,7 +3,6 @@ package com.yechaoa.wanandroid_jetpack.ui.main.tree.child
 import androidx.lifecycle.MutableLiveData
 import com.yechaoa.wanandroid_jetpack.base.BaseViewModel
 import com.yechaoa.wanandroid_jetpack.data.bean.Article
-import com.yechaoa.wanandroid_jetpack.data.bean.Tree
 
 class TreeChildViewModel : BaseViewModel() {
 

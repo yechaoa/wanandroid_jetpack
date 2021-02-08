@@ -1,6 +1,5 @@
 package com.yechaoa.wanandroid_jetpack.ui.main.pro
 
-
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment

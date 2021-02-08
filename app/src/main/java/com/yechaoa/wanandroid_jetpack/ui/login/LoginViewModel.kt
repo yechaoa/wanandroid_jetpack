@@ -23,6 +23,7 @@ class LoginViewModel : BaseViewModel() {
                 _loginState.value = 0 == loginData.code()
             },
             error = {
+                //(其实在BaseViewModel处理就行了，这里作为演示)
                 if (it is ApiException) {
                     // -1001 代表登录失效，需要重新登录
                     if (-1001 == it.code) {

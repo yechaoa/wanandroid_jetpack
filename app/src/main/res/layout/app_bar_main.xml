@@ -24,17 +24,4 @@
         android:id="@+id/content_main"
         layout="@layout/content_main" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/dp_20"
-        android:layout_marginBottom="@dimen/dp_70"
-        app:borderWidth="0dp"
-        android:backgroundTint="@color/colorAccent"
-        android:contentDescription="@string/app_name"
-        app:rippleColor="@color/colorPrimaryDark"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
