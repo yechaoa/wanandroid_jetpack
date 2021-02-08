@@ -1,6 +1,6 @@
-# :collision:wanandroid_jetpack
+# :collision:玩安卓 Jetpack版本
 
-玩安卓的`Jetpack`版本，非常感谢`鸿洋`提供的api。
+感谢`鸿洋`提供的api。
 
 ![](https://img.shields.io/badge/MVVM-Jetpack-orange.svg)
 ![](https://img.shields.io/hexpm/l/plug.svg)
@@ -25,10 +25,6 @@
 * Kotlin语法特性、标准函数、扩展函数等
 * Material Design控件的使用等
 
-# :pencil:Todo
-- [ ] 注册
-- [ ] 搜索
-
 # :package:开发环境
 * Android Studio 4.1.2
 * Kotlin 1.4.21
@@ -44,6 +40,10 @@
 * [AgentWeb](https://github.com/Justson/AgentWeb)
 * [BRVAH](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
 * [flowlayout](https://github.com/hongyangAndroid/FlowLayout)
+
+# :pencil:Todo
+- [ ] 注册
+- [ ] 搜索
 
 <br>
 
