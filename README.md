@@ -25,7 +25,7 @@
 
 # :beers:你能学到
 
-* MVVM的开发架构
+* MVVM模式的开发架构
 * Jetpack组件的使用等
 * Kotlin语法特性、标准函数、扩展函数等
 * Material Design控件的使用等
