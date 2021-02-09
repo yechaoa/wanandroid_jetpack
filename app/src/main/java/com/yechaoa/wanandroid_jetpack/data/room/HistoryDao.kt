@@ -20,7 +20,7 @@ interface HistoryDao {
      * @Query：查，此注解需要传入SQL语句作为参数，SQL语句用来限定查询的条件，注意如果是按条件删除数据等操作，也可以使用此注解来修饰。
      */
 
-    //按类型 查询所有搜索历史，时间倒序 1文章 2微课
+    //按类型 查询所有搜索历史，时间倒序 type类型 自己定
     @Query("SELECT * FROM t_history WHERE type=:type ORDER BY insert_time DESC")
     fun getAll(type: Int = 1): Flow<List<History>>
 

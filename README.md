@@ -15,13 +15,18 @@
 <br>
 
 # :fire:截图
-| <img src="/screenshot/home.png" width="285"/> | <img src="/screenshot/tree.png" width="285"/> | <img src="/screenshot/navi.png" width="285"/> | <img src="/screenshot/pro.png" width="285"/> |
-| :--: | :--: | :--: | :--: |
-| 首页 | 体系 | 导航 | 项目 |
+| <img src="/screenshot/home.png" width="285"/> | <img src="/screenshot/tree.png" width="285"/> | <img src="/screenshot/navi.png" width="285"/> |
+| :--: | :--: | :--: |
+| 首页 | 体系 | 导航 |
+
+| <img src="/screenshot/pro.png" width="285"/> | <img src="/screenshot/search.png" width="285"/> | <img src="/screenshot/about.png" width="285"/> |
+| :--: | :--: | :--: |
+| 项目 | 搜索 | 关于 |
 
 # :beers:你能学到
 
-* MVVM的开发架构、Jetpack组件的使用等
+* MVVM的开发架构
+* Jetpack组件的使用等
 * Kotlin语法特性、标准函数、扩展函数等
 * Material Design控件的使用等
 
@@ -41,12 +46,7 @@
 * [BRVAH](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
 * [flowlayout](https://github.com/hongyangAndroid/FlowLayout)
 
-# :pencil:Todo
-- [ ] 注册
-- [ ] 搜索
-
 <br>
-
 
 ```
    Copyright [2021] [yechaoa]

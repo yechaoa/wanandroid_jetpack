@@ -11,7 +11,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import com.yechaoa.wanandroid_jetpack.R
 import com.yechaoa.wanandroid_jetpack.base.BaseVmActivity
+import com.yechaoa.wanandroid_jetpack.data.bean.History
 import com.yechaoa.wanandroid_jetpack.data.bean.Hotkey
+import com.yechaoa.wanandroid_jetpack.data.room.HistoryDao
+import com.yechaoa.wanandroid_jetpack.data.room.HistoryDatabase
 import com.yechaoa.wanandroid_jetpack.databinding.ActivitySearchBinding
 import com.yechaoa.wanandroid_jetpack.ui.adapter.ArticleAdapter
 import com.yechaoa.wanandroid_jetpack.ui.detail.DetailActivity
@@ -19,6 +22,11 @@ import com.yechaoa.wanandroid_jetpack.util.randomColor
 import com.yechaoa.yutilskt.*
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>() {
@@ -73,9 +81,45 @@ class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>() 
         mBinding.recyclerView.adapter = mArticleAdapter
     }
 
+    private lateinit var mHistoryDao: HistoryDao
+
     override fun initData() {
         super.initData()
+        mHistoryDao = HistoryDatabase.getInstance(this).historyDao()
         mViewModel.getHotkey()
+        getSearchHistory()
+    }
+
+    private fun getSearchHistory() {
+        MainScope().launch(Dispatchers.IO) {
+            mHistoryDao.getAll().collect {
+                withContext(Dispatchers.Main) {
+                    if (it.isNotEmpty()) {
+                        mBinding.llHistory.visibility = View.VISIBLE
+                        setHistory(it)
+                    } else {
+                        mBinding.llHistory.visibility = View.GONE
+                    }
+                }
+            }
+        }
+    }
+
+    private fun saveSearchHistory(text: String) {
+        MainScope().launch(Dispatchers.IO) {
+            val id = mHistoryDao.queryIdByName(text)
+            if (null == id) {
+                mHistoryDao.insert(History(null, text, TimeUtil.dateAndTime))
+            } else {
+                mHistoryDao.update(History(id, text, TimeUtil.dateAndTime))
+            }
+        }
+    }
+
+    private fun cleanHistory() {
+        MainScope().launch(Dispatchers.IO) {
+            mHistoryDao.deleteAll()
+        }
     }
 
     private lateinit var mEditText: EditText
@@ -128,6 +172,7 @@ class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>() 
             override fun onQueryTextSubmit(query: String): Boolean {
                 LogUtil.i("aaa", "搜索内容===$query")
                 mKey = query
+                saveSearchHistory(mKey)
                 mCurrentPage = 0 //重置分页，避免二次加载分页混乱
                 //搜索请求
                 mViewModel.getArticleList(mCurrentPage, mKey)
@@ -143,7 +188,7 @@ class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>() 
     override fun observe() {
         super.observe()
         mViewModel.hotkeyList.observe(this, {
-            setFlowLayout(it)
+            setHotkey(it)
         })
 
         mViewModel.articleList.observe(this, {
@@ -181,14 +226,11 @@ class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>() 
         })
     }
 
-    /**
-     * 填充FlowLayout数据
-     */
-    private fun setFlowLayout(list: MutableList<Hotkey>) {
-        mBinding.flowLayout.adapter = object : TagAdapter<Hotkey>(list) {
+    private fun setHotkey(list: MutableList<Hotkey>) {
+        mBinding.flowLayoutHot.adapter = object : TagAdapter<Hotkey>(list) {
             override fun getView(parent: FlowLayout, position: Int, s: Hotkey): View {
                 val tvTag = LayoutInflater.from(this@SearchActivity).inflate(
-                    R.layout.item_navi, mBinding.flowLayout, false
+                    R.layout.item_navi, mBinding.flowLayoutHot, false
                 ) as TextView
                 tvTag.text = s.name
                 tvTag.setTextColor(randomColor())
@@ -196,11 +238,36 @@ class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>() 
             }
         }
         //设置点击事件
-        mBinding.flowLayout.setOnTagClickListener { _, position, _ ->
+        mBinding.flowLayoutHot.setOnTagClickListener { _, position, _ ->
             YUtils.closeSoftKeyboard()
             mKey = list[position].name
             //填充搜索框
             mEditText.setText(mKey)
+            saveSearchHistory(mKey)
+            mCurrentPage = 0 //重置分页，避免二次加载分页混乱
+            mViewModel.getArticleList(mCurrentPage, mKey)
+            return@setOnTagClickListener true
+        }
+    }
+
+    private fun setHistory(list: List<History>) {
+        mBinding.flowLayoutHistory.adapter = object : TagAdapter<History>(list) {
+            override fun getView(parent: FlowLayout, position: Int, s: History): View {
+                val tvTag = LayoutInflater.from(this@SearchActivity).inflate(
+                    R.layout.item_navi, mBinding.flowLayoutHistory, false
+                ) as TextView
+                tvTag.text = s.name
+                tvTag.setTextColor(randomColor())
+                return tvTag
+            }
+        }
+        //设置点击事件
+        mBinding.flowLayoutHistory.setOnTagClickListener { _, position, _ ->
+            YUtils.closeSoftKeyboard()
+            mKey = list[position].name!!
+            //填充搜索框
+            mEditText.setText(mKey)
+            saveSearchHistory(mKey)
             mCurrentPage = 0 //重置分页，避免二次加载分页混乱
             mViewModel.getArticleList(mCurrentPage, mKey)
             return@setOnTagClickListener true
@@ -211,6 +278,11 @@ class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>() 
         super.setListener()
         mBinding.toolbar.setNavigationOnClickListener {
             super.onBackPressed()
+        }
+
+        mBinding.ivDelete.setOnClickListener {
+            cleanHistory()
+            mBinding.llHistory.visibility = View.GONE
         }
     }
 }
