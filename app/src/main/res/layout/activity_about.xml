@@ -30,7 +30,7 @@
                 app:layout_collapseMode="pin"
                 app:navigationIcon="@mipmap/ic_back_white"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="@string/app_name"
+                app:title="@string/wanandroid"
                 app:titleTextColor="@color/white" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

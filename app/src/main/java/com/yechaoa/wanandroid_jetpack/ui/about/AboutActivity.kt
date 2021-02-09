@@ -25,14 +25,23 @@ class AboutActivity : BaseActivity<ActivityAboutBinding>() {
     override fun initialize() {
         super.initialize()
 
+        mBinding.toolbar.title = "${getString(R.string.wanandroid)}  V${YUtils.getVersionName()}"
         mBinding.toolbar.setNavigationOnClickListener {
             super.onBackPressed()
         }
 
         mContentAboutBinding = mBinding.contentAbout
-        mContentAboutBinding.tvAppInfo.text = "玩安卓  V${YUtils.getVersionName()}"
 
         //添加下划线
+        mContentAboutBinding.tvAuthor.paint.flags = Paint.UNDERLINE_TEXT_FLAG
+        mContentAboutBinding.tvAuthor.setOnClickListener {
+            val intent = Intent(this, DetailActivity::class.java).apply {
+                putExtra(DetailActivity.WEB_URL, getString(R.string.csdn))
+                putExtra(DetailActivity.WEB_TITLE, getString(R.string.author))
+            }
+            startActivity(intent)
+        }
+
         mContentAboutBinding.tvGithub.paint.flags = Paint.UNDERLINE_TEXT_FLAG
         mContentAboutBinding.tvGithub.setOnClickListener {
             val intent = Intent(this, DetailActivity::class.java).apply {
@@ -58,7 +67,7 @@ class AboutActivity : BaseActivity<ActivityAboutBinding>() {
         //根据路径得到字体
         val typeface = Typeface.createFromAsset(assets, "fonts/mononoki-Regular.ttf")
         //设置给TextView
-        mContentAboutBinding.tvAppInfo.typeface = typeface
+        mContentAboutBinding.tvAuthor.typeface = typeface
         mContentAboutBinding.tvGithub.typeface = typeface
         mContentAboutBinding.tvApi.typeface = typeface
         mContentAboutBinding.tvLibrary.typeface = typeface

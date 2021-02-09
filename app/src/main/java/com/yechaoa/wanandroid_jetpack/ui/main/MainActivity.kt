@@ -40,7 +40,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         mAppBarMainBinding = mBinding.appBarMain
         mContentMainBinding = mBinding.appBarMain.contentMain
 
-        mAppBarMainBinding.toolbar.title = resources.getString(R.string.app_name)
+        mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_home)
 
         initActionBarDrawer()
 
@@ -131,7 +131,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             override fun onPageSelected(position: Int) {
                 mAppBarMainBinding.contentMain.bottomNavigation.menu.getItem(position).isChecked = true
                 when (position) {
-                    0 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.app_name)
+                    0 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_home)
                     1 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_tree)
                     2 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_navi)
                     else -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_project)
@@ -190,7 +190,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             mBinding.drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             if ((System.currentTimeMillis() - mExitTime) > 2000) {
-                ToastUtil.show("再按一次退出" + resources.getString(R.string.app_name))
+                ToastUtil.show("再按一次退出" + resources.getString(R.string.wanandroid))
                 mExitTime = System.currentTimeMillis()
             } else {
                 ActivityUtil.closeAllActivity()
