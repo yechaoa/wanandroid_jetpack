@@ -1,8 +1,6 @@
 package com.yechaoa.wanandroid_jetpack.ui.main
 
 import android.content.Intent
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
@@ -164,29 +162,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             }
             false
         }
-    }
 
-    /**
-     * 添加toolbar菜单
-     */
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_toolbar, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    /**
-     * toolbar菜单事件
-     */
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_search -> {
+        /**
+         * toolbar菜单事件
+         */
+        mAppBarMainBinding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_search -> {
 //                startActivity(Intent(this, SearchActivity::class.java))
+                }
+                R.id.action_settings -> {
+                    ToastUtil.show("设置")
+                }
             }
-            R.id.action_settings -> {
-                ToastUtil.show("设置")
-            }
+            return@setOnMenuItemClickListener true
         }
-        return super.onOptionsItemSelected(item)
     }
 
     private var mExitTime: Long = 0 // 保存用户按返回键的时间
