@@ -15,6 +15,7 @@ import com.yechaoa.wanandroid_jetpack.base.BaseVmActivity
 import com.yechaoa.wanandroid_jetpack.common.MyConfig
 import com.yechaoa.wanandroid_jetpack.databinding.ActivityLoginBinding
 import com.yechaoa.wanandroid_jetpack.ui.main.MainActivity
+import com.yechaoa.wanandroid_jetpack.ui.register.RegisterActivity
 import com.yechaoa.wanandroid_jetpack.util.setOnclickNoRepeat
 import com.yechaoa.yutilskt.ActivityUtil
 import com.yechaoa.yutilskt.SpUtil
@@ -36,6 +37,10 @@ class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>() {
     }
 
     override fun setListener() {
+        mBinding.tvRegister.setOnclickNoRepeat {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
         mBinding.btnLogin.setOnclickNoRepeat {
             if (!mBinding.cbServiceAgreement.isChecked) {
                 ToastUtil.show("同意服务协议与隐私政策后才能登录")

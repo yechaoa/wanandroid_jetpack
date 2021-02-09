@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity">
 
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_20"
+        android:text="@string/register"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -94,7 +105,8 @@
         android:paddingHorizontal="@dimen/dp_80"
         android:text="@string/login"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/sp_15"
+        android:textSize="@dimen/sp_16"
+        android:textStyle="bold"
         app:cornerRadius="@dimen/dp_26"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

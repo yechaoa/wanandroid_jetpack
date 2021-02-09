@@ -22,7 +22,7 @@ interface Api {
     suspend fun login(
         @Field("username") username: String?,
         @Field("password") password: String?
-    ): BaseBean<UserBean>
+    ): BaseBean<User>
 
     //注册
     @FormUrlEncoded
@@ -31,7 +31,7 @@ interface Api {
         @Field("username") username: String?,
         @Field("password") password: String?,
         @Field("repassword") repassword: String?
-    ): BaseBean<UserBean>
+    ): BaseBean<User>
 
 
     //-----------------------【 首页 】----------------------

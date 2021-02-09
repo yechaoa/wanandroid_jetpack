@@ -1,6 +1,6 @@
 package com.yechaoa.wanandroid_jetpack.data.bean
 
-data class UserBean(
+data class User(
     var admin: Boolean,
     var chapterTops: List<Any>,
     var coinCount: Int,
