@@ -19,7 +19,6 @@ class AddCookiesInterceptor : Interceptor {
         val stringSet = SpUtil.getStringSet(MyConfig.COOKIE)
         for (cookie in stringSet) {
             builder.addHeader("Cookie", cookie)
-            LogUtil.i("Adding Header: $cookie")
         }
         return chain.proceed(builder.build())
     }

@@ -31,6 +31,7 @@
         <activity android:name=".ui.detail.DetailActivity" />
         <activity android:name=".ui.about.AboutActivity" />
         <activity android:name=".ui.main.tree.child.TreeChildActivity" />
+        <activity android:name=".ui.search.SearchActivity" />
     </application>
 
 </manifest>

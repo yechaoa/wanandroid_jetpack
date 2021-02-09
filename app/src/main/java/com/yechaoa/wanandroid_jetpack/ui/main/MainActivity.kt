@@ -19,6 +19,7 @@ import com.yechaoa.wanandroid_jetpack.ui.main.home.HomeFragment
 import com.yechaoa.wanandroid_jetpack.ui.main.navi.NaviFragment
 import com.yechaoa.wanandroid_jetpack.ui.main.pro.ProjectFragment
 import com.yechaoa.wanandroid_jetpack.ui.main.tree.TreeFragment
+import com.yechaoa.wanandroid_jetpack.ui.search.SearchActivity
 import com.yechaoa.yutilskt.ActivityUtil
 import com.yechaoa.yutilskt.ShareUtil
 import com.yechaoa.yutilskt.SpUtil
@@ -169,7 +170,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         mAppBarMainBinding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_search -> {
-//                startActivity(Intent(this, SearchActivity::class.java))
+                    startActivity(Intent(this, SearchActivity::class.java))
                 }
                 R.id.action_settings -> {
                     ToastUtil.show("设置")
