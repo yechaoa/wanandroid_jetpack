@@ -39,7 +39,7 @@ class BuildTraceListener implements TaskExecutionListener, BuildListener {
         println "Task build times : "
         for (time in times) {
             // 打印耗时大于50ms的task，可自定义
-            if (times[0] >= 50) {
+            if (time[0] >= 50) {
                 printf "%7sms  %s\n", time
             }
         }
