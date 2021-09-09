@@ -3,24 +3,24 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion project.compile_version
-    buildToolsVersion project.build_version
+    compileSdkVersion Configs.compile
+    buildToolsVersion Configs.build
 
     defaultConfig {
-        applicationId "com.yechaoa.wanandroid_jetpack"
-        minSdkVersion project.minSdk_version
-        targetSdkVersion project.targetSdk_version
-        versionCode project.versionCode
-        versionName project.versionName
+        applicationId Configs.applicationId
+        minSdkVersion Configs.minSdk
+        targetSdkVersion Configs.target
+        versionCode Configs.versionCode
+        versionName Configs.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += [
-                        "room.schemaLocation":"$projectDir/schemas".toString(),
-                        "room.incremental":"true",
-                        "room.expandProjection":"true"]
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
             }
         }
     }
@@ -69,61 +69,61 @@ static def releaseTime() {
 dependencies {
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "androidx.core:core-ktx:$core_version"
-    implementation "androidx.appcompat:appcompat:$compat_version"
-    implementation "com.google.android.material:material:$material_version"
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
-    implementation "androidx.navigation:navigation-fragment:$navigationFragment_version"
-    implementation "androidx.navigation:navigation-ui:$navigation_version"
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigationFragment_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    implementation(Deps.kotlinStdlib)
+    implementation(Deps.coreKtx)
+    implementation(Deps.appcompat)
+    implementation(Deps.material)
+    implementation(Deps.constraintlayout)
+    implementation(Deps.navigationFragment)
+    implementation(Deps.navigationUi)
+    implementation(Deps.lifecycle)
+    implementation(Deps.navigationFragmentKtx)
+    implementation(Deps.navigationUiKtx)
 
-    testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "androidx.test.ext:junit:$extJunit_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    testImplementation(Deps.junit)
+    androidTestImplementation(Deps.junitExt)
+    androidTestImplementation(Deps.espressoCore)
 
     /*okhttp、retrofit*/
-    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$logging_version"
+    implementation(Deps.okhttp)
+    implementation(Deps.retrofit)
+    implementation(Deps.converterGson)
+    implementation(Deps.logging)
 
     /*banner*/
-    implementation "com.youth.banner:banner:$banner_version"
+    implementation(Deps.banner)
 
     /*swiperefreshlayout*/
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefresh_version"
+    implementation(Deps.swiperefreshlayout)
 
     /*immersionbar*/
-    implementation "com.gyf.immersionbar:immersionbar:$immersionbar_version"
+    implementation(Deps.immersionbar)
 
     /*agentWeb*/
-    implementation "com.just.agentweb:agentweb-androidx:$agentweb_version"
+    implementation(Deps.agentweb)
 
     /*YUtils*/
-    implementation "com.github.yechaoa.YUtils:yutilskt:$yutilskt_version"
+    implementation(Deps.yutilskt)
 
     /*BRVAH*/
-    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:$brvha_version"
+    implementation(Deps.brvha)
 
     /*glide*/
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "com.github.bumptech.glide:compiler:$glide_version"
+    implementation(Deps.glide)
+    kapt(Deps.glideCompiler)
 
     /*FlowLayout*/
-    implementation "com.hyman:flowlayout-lib:$flowLayout_version"
+    implementation(Deps.flowlayout)
 
     /*VerticalTabLayout*/
-    implementation "q.rorbin:VerticalTabLayout:$vertical_version"
+    implementation(Deps.VerticalTabLayout)
 
     /*room*/
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    implementation(Deps.roomRuntime)
+    kapt(Deps.roomCompiler)
     // optional - Kotlin Extensions and Coroutines support for Room
-    implementation "androidx.room:room-ktx:$room_version"
+    implementation(Deps.roomKtx)
     // optional - Test helpers
-    testImplementation "androidx.room:room-testing:$room_version"
+    testImplementation(Deps.roomTesting)
 
 }
