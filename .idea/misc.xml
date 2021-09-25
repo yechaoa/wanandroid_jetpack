@@ -5,6 +5,15 @@
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.30480072463768115" />
+        <entry key="app/src/main/res/layout/item_tree.xml" value="0.30480072463768115" />
+        <entry key="app/src/main/res/layout/layout_empty_view.xml" value="0.30480072463768115" />
+      </map>
+    </option>
+  </component>
   <component name="EntryPointsManager">
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="org.greenrobot.eventbus.Subscribe" />

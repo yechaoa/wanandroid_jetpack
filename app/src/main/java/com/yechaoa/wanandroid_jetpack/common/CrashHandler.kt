@@ -40,10 +40,11 @@ class CrashHandler : Thread.UncaughtExceptionHandler {
         Thread.setDefaultUncaughtExceptionHandler(this)
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun uncaughtException(thread: Thread, e: Throwable) {
         if (!handleException(e)) {
             // 没有处理还交给系统默认的处理器
-            mDefaultHandler.uncaughtException(thread, e);
+            mDefaultHandler.uncaughtException(thread, e)
         } else {
             // 已经处理，结束进程
             killProcess(myPid())
@@ -56,6 +57,7 @@ class CrashHandler : Thread.UncaughtExceptionHandler {
      * @param throwable 异常
      * @return true:如果处理了该异常信息;否则返回false.
      */
+    @RequiresApi(Build.VERSION_CODES.P)
     private fun handleException(throwable: Throwable?): Boolean {
         if (throwable == null) {
             return false

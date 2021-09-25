@@ -3,7 +3,6 @@ package com.yechaoa.wanandroid_jetpack.ui.search
 import androidx.lifecycle.MutableLiveData
 import com.yechaoa.wanandroid_jetpack.base.BaseViewModel
 import com.yechaoa.wanandroid_jetpack.data.bean.Article
-import com.yechaoa.wanandroid_jetpack.data.bean.Banner
 import com.yechaoa.wanandroid_jetpack.data.bean.Hotkey
 
 class SearchViewModel : BaseViewModel() {

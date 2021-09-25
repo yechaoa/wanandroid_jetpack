@@ -1,7 +1,6 @@
 package com.yechaoa.wanandroid_jetpack.data.http.interceptor
 
 import com.yechaoa.wanandroid_jetpack.common.MyConfig
-import com.yechaoa.yutilskt.LogUtil
 import com.yechaoa.yutilskt.SpUtil
 import okhttp3.Interceptor
 import okhttp3.Request
