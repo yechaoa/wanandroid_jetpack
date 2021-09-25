@@ -3,23 +3,24 @@
  * Describe :
  */
 
-plugins{
+plugins {
 //    groovy
     `kotlin-dsl`
 }
 
-repositories{
+repositories {
+    maven(url = "https://maven.aliyun.com/repository/public")
     google()
     mavenCentral()
 }
 
-dependencies{
+dependencies {
 //    implementation(gradleApi())
 //    implementation(localGroovy())
 //    implementation("com.android.tools.build:gradle:4.0.2")
 }
 
-tasks.withType<JavaCompile>{
+tasks.withType<JavaCompile> {
     options.isFork = true
     options.isIncremental = true
 }

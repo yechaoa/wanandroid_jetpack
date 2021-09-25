@@ -26,13 +26,14 @@
 # :beers:你能学到
 
 * MVVM模式的开发架构
-* Jetpack组件的使用等
-* Kotlin语法特性、标准函数、扩展函数等
+* Jetpack组件的使用，Lifecycle、ViewModel、Room等
+* Kotlin语法特性、标准函数、扩展函数、高阶函数等
 * Material Design控件的使用等
+* Gradle Plugin的使用等
 
 # :package:开发环境
-* Android Studio 4.1.2
-* Kotlin 1.4.21
+* Android Studio 4.1.2 -> Arctic Fox | 2020.3.1
+* Kotlin 1.4.21 -> 1.5.31
 
 # :point_right:感谢
 * [YUtils](https://github.com/yechaoa/YUtils)

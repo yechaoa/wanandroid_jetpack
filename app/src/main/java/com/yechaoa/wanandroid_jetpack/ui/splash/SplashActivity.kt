@@ -39,7 +39,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     }
 
     private fun startCountDown() {
-        timer = object : CountDownTimer(1 * 1000, 1000) {
+        timer = object : CountDownTimer(1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {}
 
             override fun onFinish() {

@@ -5,7 +5,6 @@ apply plugin: 'dependencies-plugin'
 
 android {
     compileSdkVersion Configs.compile
-    buildToolsVersion Configs.build
 
     defaultConfig {
         applicationId Configs.applicationId
@@ -60,14 +59,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-    }
-    dexOptions {
-        // 最大堆内存
-        javaMaxHeapSize "4g"
-        // 预编译
-        preDexLibraries = true
-        // 是否支持大工程模式
-        // jumboMode = true
     }
 }
 

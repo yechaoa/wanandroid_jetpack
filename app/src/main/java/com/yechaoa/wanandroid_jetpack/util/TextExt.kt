@@ -28,12 +28,12 @@ fun randomColor(): Int {
  */
 fun TextView.spanText(searchKey: String?, value: String?, color: Int = R.color.red) {
     if (!searchKey.isNullOrEmpty() && !value.isNullOrEmpty()
-        && value.toLowerCase(Locale.getDefault())
-            .contains(searchKey.toLowerCase(Locale.getDefault()))
+        && value.lowercase(Locale.getDefault())
+            .contains(searchKey.lowercase(Locale.getDefault()))
     ) {
-        searchKey.toLowerCase(Locale.getDefault()).apply {
+        searchKey.lowercase(Locale.getDefault()).apply {
             val builder = SpannableString(value)
-            val list = value.toLowerCase(Locale.getDefault()).split(this)
+            val list = value.lowercase(Locale.getDefault()).split(this)
             var recodeIndex = 0
             list.forEachIndexed { index, s ->
                 if (index < list.size - 1) {

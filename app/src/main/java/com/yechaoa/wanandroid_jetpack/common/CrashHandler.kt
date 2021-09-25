@@ -7,9 +7,11 @@ import android.os.Environment
 import android.os.Looper
 import android.os.Process.killProcess
 import android.os.Process.myPid
+import androidx.annotation.RequiresApi
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.system.exitProcess
 
 /**
  * Created by yechaoa on 2020/2/4.
@@ -39,13 +41,13 @@ class CrashHandler : Thread.UncaughtExceptionHandler {
     }
 
     override fun uncaughtException(thread: Thread, e: Throwable) {
-        if (!handleException(e) && mDefaultHandler != null) {
+        if (!handleException(e)) {
             // 没有处理还交给系统默认的处理器
             mDefaultHandler.uncaughtException(thread, e);
         } else {
             // 已经处理，结束进程
             killProcess(myPid())
-            System.exit(1)
+            exitProcess(1)
         }
     }
 
@@ -79,6 +81,7 @@ class CrashHandler : Thread.UncaughtExceptionHandler {
     /**
      * 收集设备信息、版本信息、异常信息
      */
+    @RequiresApi(Build.VERSION_CODES.P)
     private fun getInfos(context: Context, throwable: Throwable): String {
         //版本信息
         try {
@@ -86,7 +89,7 @@ class CrashHandler : Thread.UncaughtExceptionHandler {
             val pi = pm.getPackageInfo(context.packageName, PackageManager.GET_ACTIVITIES)
             if (pi != null) {
                 val versionName = if (pi.versionName == null) "null" else pi.versionName
-                val versionCode = pi.versionCode.toString() + ""
+                val versionCode = pi.longVersionCode.toString() + ""
                 infos["versionName"] = versionName
                 infos["versionCode"] = versionCode
             }

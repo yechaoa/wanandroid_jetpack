@@ -6,7 +6,6 @@
 object Configs {
     const val applicationId = "com.yechaoa.wanandroid_jetpack"
     const val compile = 30
-    const val build = "30.0.1"
     const val minSdk = 23
     const val target = 30
     const val versionCode = 2
@@ -14,8 +13,8 @@ object Configs {
 }
 
 object Versions {
-    const val gradle_version = "4.0.2"
-    const val kotlin_version = "1.4.21"
+    const val gradle_version = "7.0.2"
+    const val kotlin_version = "1.5.31"
 
     const val core_version = "1.3.2"
     const val compat_version = "1.2.0"
