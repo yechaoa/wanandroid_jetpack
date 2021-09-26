@@ -1,2 +1,2 @@
-include ':app'
+include ':app',':checks', ':lintLibrary'
 rootProject.name = "wanandroid_jetpack"
