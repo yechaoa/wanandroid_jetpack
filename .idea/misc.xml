@@ -11,6 +11,8 @@
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.30480072463768115" />
         <entry key="app/src/main/res/layout/item_tree.xml" value="0.30480072463768115" />
         <entry key="app/src/main/res/layout/layout_empty_view.xml" value="0.30480072463768115" />
+        <entry key="app/src/main/res/layout/layout_loading_view.xml" value="0.29739583333333336" />
+        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.30344202898550726" />
       </map>
     </option>
   </component>

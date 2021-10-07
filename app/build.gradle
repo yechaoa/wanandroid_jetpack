@@ -23,6 +23,14 @@ android {
                         "room.expandProjection": "true"]
             }
         }
+
+        resConfigs("en", "zh", "zh-rCN")
+
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+            // 还可以添加 'armeabi','x86', 'x86_64', 'mips', 'mips64'
+        }
     }
 
     buildFeatures {
@@ -36,20 +44,25 @@ android {
         }
     }
 
-//    signingConfigs {
-//        config {
-//            storeFile file("./jks/lawappandroid.jks")
-//            storePassword "lawapp"
-//            keyAlias "lawapp"
-//            keyPassword "lawapp"
-//            v1SigningEnabled true
-//            v2SigningEnabled true
-//        }
-//    }
+    signingConfigs {
+        release {
+            storeFile file("./jks/wanandroid_jetpack")
+            storePassword "yechaoa"
+            keyAlias "wanandroid_jetpack"
+            keyPassword "yechaoa"
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+        }
+        release {
+            signingConfig signingConfigs.release
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
