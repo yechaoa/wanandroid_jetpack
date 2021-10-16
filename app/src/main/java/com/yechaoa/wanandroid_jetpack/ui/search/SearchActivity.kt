@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
 
-class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>() {
+class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>(ActivitySearchBinding::inflate) {
 
     private lateinit var mArticleAdapter: ArticleAdapter
     private lateinit var mKey: String
@@ -37,10 +37,6 @@ class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>() 
 
     override fun viewModelClass(): Class<SearchViewModel> {
         return SearchViewModel::class.java
-    }
-
-    override fun getViewBinding(): ActivitySearchBinding {
-        return ActivitySearchBinding.inflate(layoutInflater)
     }
 
     override fun initView() {

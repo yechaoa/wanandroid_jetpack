@@ -19,7 +19,7 @@ import com.yechaoa.wanandroid_jetpack.base.BaseActivity
 import com.yechaoa.wanandroid_jetpack.databinding.ActivityDetailBinding
 import com.yechaoa.yutilskt.LogUtil
 
-class DetailActivity : BaseActivity<ActivityDetailBinding>() {
+class DetailActivity : BaseActivity<ActivityDetailBinding>(ActivityDetailBinding::inflate) {
 
     companion object {
         const val WEB_URL: String = "web_url"
@@ -27,10 +27,6 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>() {
     }
 
     private lateinit var mAgentWeb: AgentWeb
-
-    override fun getViewBinding(): ActivityDetailBinding {
-        return ActivityDetailBinding.inflate(layoutInflater)
-    }
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun initialize() {

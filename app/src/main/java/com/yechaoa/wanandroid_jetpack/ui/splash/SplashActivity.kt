@@ -12,13 +12,9 @@ import com.yechaoa.wanandroid_jetpack.ui.main.MainActivity
 import com.yechaoa.wanandroid_jetpack.util.setOnclickNoRepeat
 import com.yechaoa.yutilskt.SpUtil
 
-class SplashActivity : BaseActivity<ActivitySplashBinding>() {
+class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
 
     private lateinit var timer: CountDownTimer
-
-    override fun getViewBinding(): ActivitySplashBinding {
-        return ActivitySplashBinding.inflate(layoutInflater)
-    }
 
     override fun initialize() {
         super.initialize()

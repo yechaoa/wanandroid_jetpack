@@ -12,7 +12,7 @@ import com.yechaoa.yutilskt.ToastUtil
 /**
  * A simple [Fragment] subclass.
  */
-class TreeChildFragment : BaseVmFragment<FragmentChildBinding, TreeChildViewModel>() {
+class TreeChildFragment : BaseVmFragment<FragmentChildBinding, TreeChildViewModel>(FragmentChildBinding::inflate) {
 
     companion object {
         const val CID: String = "cid"
@@ -35,10 +35,6 @@ class TreeChildFragment : BaseVmFragment<FragmentChildBinding, TreeChildViewMode
 
     override fun viewModelClass(): Class<TreeChildViewModel> {
         return TreeChildViewModel::class.java
-    }
-
-    override fun getViewBinding(): FragmentChildBinding {
-        return FragmentChildBinding.inflate(layoutInflater)
     }
 
     override fun initView() {

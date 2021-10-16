@@ -2,13 +2,14 @@ package com.yechaoa.wanandroid_jetpack.base
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.yechaoa.wanandroid_jetpack.common.MyConfig
 import com.yechaoa.wanandroid_jetpack.ui.login.LoginActivity
 import com.yechaoa.yutilskt.SpUtil
 
-abstract class BaseVmActivity<VB : ViewBinding, VM : BaseViewModel> : BaseActivity<VB>() {
+abstract class BaseVmActivity<VB : ViewBinding, VM : BaseViewModel>(inflate: (LayoutInflater) -> VB) : BaseActivity<VB>(inflate) {
 
     protected open lateinit var mViewModel: VM
 

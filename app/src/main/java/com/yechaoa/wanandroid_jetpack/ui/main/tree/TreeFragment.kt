@@ -10,13 +10,9 @@ import com.yechaoa.wanandroid_jetpack.ui.adapter.TreeAdapter
 import com.yechaoa.wanandroid_jetpack.ui.main.tree.child.TreeChildActivity
 import com.zhy.view.flowlayout.FlowLayout
 
-class TreeFragment : BaseVmFragment<FragmentTreeBinding, TreeViewModel>() {
+class TreeFragment : BaseVmFragment<FragmentTreeBinding, TreeViewModel>(FragmentTreeBinding::inflate) {
 
     private var mPosition: Int = 0
-
-    override fun getViewBinding(): FragmentTreeBinding {
-        return FragmentTreeBinding.inflate(layoutInflater)
-    }
 
     override fun viewModelClass(): Class<TreeViewModel> {
         return TreeViewModel::class.java

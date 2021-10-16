@@ -2,6 +2,7 @@ package com.yechaoa.wanandroid_jetpack.base
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
@@ -9,7 +10,7 @@ import com.yechaoa.wanandroid_jetpack.common.MyConfig
 import com.yechaoa.wanandroid_jetpack.ui.login.LoginActivity
 import com.yechaoa.yutilskt.SpUtil
 
-abstract class BaseVmFragment<VB : ViewBinding, VM : BaseViewModel> : BaseFragment<VB>() {
+abstract class BaseVmFragment<VB : ViewBinding, VM : BaseViewModel>(inflate: (LayoutInflater) -> VB) : BaseFragment<VB>(inflate) {
 
     protected lateinit var mViewModel: VM
     private var lazyLoaded = false

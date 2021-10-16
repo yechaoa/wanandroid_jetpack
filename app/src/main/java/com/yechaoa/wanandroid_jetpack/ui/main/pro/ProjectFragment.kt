@@ -5,11 +5,7 @@ import com.yechaoa.wanandroid_jetpack.databinding.FragmentProjectBinding
 import com.yechaoa.wanandroid_jetpack.ui.adapter.CommonViewPagerAdapter
 import java.util.*
 
-class ProjectFragment : BaseVmFragment<FragmentProjectBinding, ProjectViewModel>() {
-
-    override fun getViewBinding(): FragmentProjectBinding {
-        return FragmentProjectBinding.inflate(layoutInflater)
-    }
+class ProjectFragment : BaseVmFragment<FragmentProjectBinding, ProjectViewModel>(FragmentProjectBinding::inflate) {
 
     override fun viewModelClass(): Class<ProjectViewModel> {
         return ProjectViewModel::class.java

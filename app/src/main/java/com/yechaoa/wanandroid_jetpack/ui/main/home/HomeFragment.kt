@@ -13,14 +13,10 @@ import com.youth.banner.transformer.*
 import java.util.*
 import kotlin.math.roundToInt
 
-class HomeFragment : BaseVmFragment<FragmentHomeBinding, HomeViewModel>() {
+class HomeFragment : BaseVmFragment<FragmentHomeBinding, HomeViewModel>(FragmentHomeBinding::inflate) {
 
     private lateinit var mArticleAdapter: ArticleAdapter
     private var mPosition = -1
-
-    override fun getViewBinding(): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(layoutInflater)
-    }
 
     override fun viewModelClass(): Class<HomeViewModel> = HomeViewModel::class.java
 

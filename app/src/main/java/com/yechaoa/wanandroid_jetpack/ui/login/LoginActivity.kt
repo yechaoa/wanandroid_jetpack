@@ -23,11 +23,7 @@ import com.yechaoa.yutilskt.ToastUtil
 import com.yechaoa.yutilskt.YUtils
 import java.util.*
 
-class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>() {
-
-    override fun getViewBinding(): ActivityLoginBinding {
-        return ActivityLoginBinding.inflate(layoutInflater)
-    }
+class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>(ActivityLoginBinding::inflate) {
 
     override fun viewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
 

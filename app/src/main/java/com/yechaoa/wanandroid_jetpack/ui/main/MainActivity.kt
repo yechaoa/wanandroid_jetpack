@@ -25,14 +25,10 @@ import com.yechaoa.yutilskt.ShareUtil
 import com.yechaoa.yutilskt.SpUtil
 import com.yechaoa.yutilskt.ToastUtil
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
     private lateinit var mAppBarMainBinding: AppBarMainBinding
     private lateinit var mContentMainBinding: ContentMainBinding
-
-    override fun getViewBinding(): ActivityMainBinding {
-        return ActivityMainBinding.inflate(layoutInflater)
-    }
 
     override fun initialize() {
         super.initialize()

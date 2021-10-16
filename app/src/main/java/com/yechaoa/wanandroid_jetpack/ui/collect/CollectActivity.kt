@@ -8,16 +8,12 @@ import com.yechaoa.wanandroid_jetpack.ui.adapter.CollectAdapter
 import com.yechaoa.wanandroid_jetpack.ui.detail.DetailActivity
 import com.yechaoa.yutilskt.ToastUtil
 
-class CollectActivity : BaseVmActivity<ActivityCollectBinding, CollectViewModel>() {
+class CollectActivity : BaseVmActivity<ActivityCollectBinding, CollectViewModel>(ActivityCollectBinding::inflate) {
 
     private lateinit var mCollectAdapter: CollectAdapter
     private var mPosition = -1
 
     override fun viewModelClass(): Class<CollectViewModel> = CollectViewModel::class.java
-
-    override fun getViewBinding(): ActivityCollectBinding {
-        return ActivityCollectBinding.inflate(layoutInflater)
-    }
 
     override fun initView() {
         initSwipeRefreshLayout()

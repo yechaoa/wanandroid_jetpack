@@ -13,7 +13,7 @@ import com.yechaoa.wanandroid_jetpack.ui.detail.DetailActivity
 /**
  * A simple [Fragment] subclass.
  */
-class ProjectChildFragment : BaseVmFragment<FragmentProjectChildBinding, ProjectViewModel>() {
+class ProjectChildFragment : BaseVmFragment<FragmentProjectChildBinding, ProjectViewModel>(FragmentProjectChildBinding::inflate) {
 
     companion object {
         const val CID: String = "cid"
@@ -35,10 +35,6 @@ class ProjectChildFragment : BaseVmFragment<FragmentProjectChildBinding, Project
 
     override fun viewModelClass(): Class<ProjectViewModel> {
         return ProjectViewModel::class.java
-    }
-
-    override fun getViewBinding(): FragmentProjectChildBinding {
-        return FragmentProjectChildBinding.inflate(layoutInflater)
     }
 
     override fun initView() {

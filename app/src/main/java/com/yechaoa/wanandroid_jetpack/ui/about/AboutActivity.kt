@@ -13,13 +13,9 @@ import com.yechaoa.wanandroid_jetpack.ui.detail.DetailActivity
 import com.yechaoa.yutilskt.ShareUtil
 import com.yechaoa.yutilskt.YUtils
 
-class AboutActivity : BaseActivity<ActivityAboutBinding>() {
+class AboutActivity : BaseActivity<ActivityAboutBinding>(ActivityAboutBinding::inflate) {
 
     private lateinit var mContentAboutBinding: ContentAboutBinding
-
-    override fun getViewBinding(): ActivityAboutBinding {
-        return ActivityAboutBinding.inflate(layoutInflater)
-    }
 
     @SuppressLint("SetTextI18n")
     override fun initialize() {

@@ -5,16 +5,12 @@ import com.yechaoa.wanandroid_jetpack.data.bean.Tree
 import com.yechaoa.wanandroid_jetpack.databinding.ActivityTreeChildBinding
 import com.yechaoa.wanandroid_jetpack.ui.adapter.CommonViewPagerAdapter
 
-class TreeChildActivity : BaseActivity<ActivityTreeChildBinding>() {
+class TreeChildActivity : BaseActivity<ActivityTreeChildBinding>(ActivityTreeChildBinding::inflate) {
 
     companion object {
         const val TITLE: String = "title"
         const val CID: String = "cid"
         const val POSITION: String = "position"
-    }
-
-    override fun getViewBinding(): ActivityTreeChildBinding {
-        return ActivityTreeChildBinding.inflate(layoutInflater)
     }
 
     override fun initialize() {

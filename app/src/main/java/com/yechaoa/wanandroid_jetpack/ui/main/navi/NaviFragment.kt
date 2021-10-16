@@ -19,15 +19,11 @@ import q.rorbin.verticaltablayout.adapter.TabAdapter
 import q.rorbin.verticaltablayout.widget.ITabView
 import q.rorbin.verticaltablayout.widget.TabView
 
-class NaviFragment : BaseVmFragment<FragmentNaviBinding, NaviViewModel>() {
+class NaviFragment : BaseVmFragment<FragmentNaviBinding, NaviViewModel>(FragmentNaviBinding::inflate) {
 
     private lateinit var mTabAdapter: MyTabAdapter
     private lateinit var mNaviList: MutableList<Navi>
     private lateinit var mArticles: MutableList<Article.ArticleDetail>
-
-    override fun getViewBinding(): FragmentNaviBinding {
-        return FragmentNaviBinding.inflate(layoutInflater)
-    }
 
     override fun viewModelClass(): Class<NaviViewModel> {
         return NaviViewModel::class.java

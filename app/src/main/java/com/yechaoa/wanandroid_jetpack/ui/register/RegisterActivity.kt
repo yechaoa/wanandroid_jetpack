@@ -7,14 +7,10 @@ import com.yechaoa.wanandroid_jetpack.util.setOnclickNoRepeat
 import com.yechaoa.yutilskt.ToastUtil
 import com.yechaoa.yutilskt.YUtils
 
-class RegisterActivity : BaseVmActivity<ActivityRegisterBinding, RegisterViewModel>() {
+class RegisterActivity : BaseVmActivity<ActivityRegisterBinding, RegisterViewModel>(ActivityRegisterBinding::inflate) {
 
     override fun viewModelClass(): Class<RegisterViewModel> {
         return RegisterViewModel::class.java
-    }
-
-    override fun getViewBinding(): ActivityRegisterBinding {
-        return ActivityRegisterBinding.inflate(layoutInflater)
     }
 
     override fun initView() {
