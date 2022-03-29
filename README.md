@@ -1,6 +1,7 @@
 # :collision:玩安卓 Jetpack版本
 
-感谢`鸿洋`提供的api。
+`微信`：y819423475
+
 
 ![](https://img.shields.io/badge/MVVM-Jetpack-orange.svg)
 ![](https://img.shields.io/hexpm/l/plug.svg)
@@ -11,6 +12,8 @@
 * [玩安卓 小程序版本](https://github.com/yechaoa/wanandroid_mini)
 * [玩安卓 Kotlin版本](https://github.com/yechaoa/wanandroid_kotlin)
 * [玩安卓 Jetpack版本](https://github.com/yechaoa/wanandroid_jetpack)
+
+感谢`鸿洋`提供的api。
 
 <br>
 
