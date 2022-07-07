@@ -3,6 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dependencies-plugin'
 
+def keystorePropertiesFile = rootProject.file("./jks/keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion Configs.compile
 
@@ -46,10 +50,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("./jks/wanandroid_jetpack")
-            storePassword "yechaoa"
-            keyAlias "wanandroid_jetpack"
-            keyPassword "yechaoa"
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
             v1SigningEnabled true
             v2SigningEnabled true
         }
@@ -57,9 +61,11 @@ android {
 
     buildTypes {
         debug {
+            buildConfigField("String", "AUTHOR", "\"yechaoa\"")
             minifyEnabled false
         }
         release {
+            buildConfigField("String", "AUTHOR", "\"yechaoa\"")
             signingConfig signingConfigs.release
             shrinkResources true
             minifyEnabled true
