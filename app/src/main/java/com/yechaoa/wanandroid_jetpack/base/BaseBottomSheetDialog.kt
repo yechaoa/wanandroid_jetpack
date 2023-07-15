@@ -23,7 +23,7 @@ abstract class BaseBottomSheetDialog<VB : ViewBinding> : BottomSheetDialogFragme
 
     protected open lateinit var mBinding: VB
 
-    private var isFull = true
+    private var isFull = false
 
     /**
      * setStyle
@@ -51,9 +51,9 @@ abstract class BaseBottomSheetDialog<VB : ViewBinding> : BottomSheetDialogFragme
     abstract fun initView(view: View)
 
     /**
-     * 是否需要全屏显示 默认全屏
+     * 是否需要全屏显示 默认不全屏
      */
-    open fun isNeedFull(isNeed: Boolean = true) {
+    open fun isNeedFull(isNeed: Boolean = false) {
         isFull = isNeed
     }
 
