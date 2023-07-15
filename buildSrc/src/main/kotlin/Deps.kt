@@ -5,16 +5,16 @@
 
 object Configs {
     const val applicationId = "com.yechaoa.wanandroid_jetpack"
-    const val compile = 30
+    const val compile = 33
     const val minSdk = 23
-    const val target = 30
-    const val versionCode = 2
-    const val versionName = "1.1"
+    const val target = 33
+    const val versionCode = 3
+    const val versionName = "1.2"
 }
 
 object Versions {
     const val gradle_version = "7.0.2"
-    const val kotlin_version = "1.5.31"
+    const val kotlin_version = "1.8.0"
 
     const val core_version = "1.3.2"
     const val compat_version = "1.2.0"
@@ -23,7 +23,7 @@ object Versions {
     const val navigationFragment_version = "2.3.2"
     const val navigation_version = "2.3.2"
     const val lifecycle_version = "2.2.0"
-    const val room_version = "2.2.5"
+    const val room_version = "2.5.0"
 
     const val junit_version = "4.13"
     const val extJunit_version = "1.1.2"
