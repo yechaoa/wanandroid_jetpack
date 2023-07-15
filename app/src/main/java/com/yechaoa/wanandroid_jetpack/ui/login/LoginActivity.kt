@@ -32,6 +32,13 @@ class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>(Activ
         setText()
     }
 
+    private fun setText() {
+        mBinding.tvServiceAgreement.movementMethod = LinkMovementMethod.getInstance()
+        mBinding.tvServiceAgreement.text = getAgreementTip()
+        //设置高亮颜色透明，因为点击会变色
+        mBinding.tvServiceAgreement.highlightColor = ContextCompat.getColor(applicationContext, R.color.transparent)
+    }
+
     override fun setListener() {
         mBinding.tvRegister.setOnclickNoRepeat {
             startActivity(Intent(this, RegisterActivity::class.java))
@@ -39,7 +46,17 @@ class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>(Activ
 
         mBinding.btnLogin.setOnclickNoRepeat {
             if (!mBinding.cbServiceAgreement.isChecked) {
-                ToastUtil.show("同意服务协议与隐私政策后才能登录")
+                AgreementDialog(getAgreementTip()) { btn ->
+                    when (btn) {
+                        AgreementDialog.AGREE -> {
+                            mBinding.cbServiceAgreement.isChecked = true
+                            attemptLogin()
+                        }
+                        AgreementDialog.NOT_AGREE -> {
+                            ToastUtil.show("同意服务协议与隐私政策后才能登录哦")
+                        }
+                    }
+                }.show(supportFragmentManager, "AgreementDialog")
                 return@setOnclickNoRepeat
             }
             attemptLogin()
@@ -81,7 +98,7 @@ class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>(Activ
 
     override fun observe() {
         super.observe()
-        mViewModel.loginState.observe(this, {
+        mViewModel.loginState.observe(this) {
             YUtils.hideLoading()
             SpUtil.setBoolean(MyConfig.IS_LOGIN, it)
             if (it) {
@@ -90,10 +107,10 @@ class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>(Activ
             } else {
                 ToastUtil.show("登录失败")
             }
-        })
+        }
     }
 
-    private fun setText() {
+    private fun getAgreementTip(): SpannableStringBuilder {
         val spanBuilder = SpannableStringBuilder("同意")
         val color = ContextCompat.getColor(applicationContext, R.color.colorPrimary)
 
@@ -118,10 +135,7 @@ class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>(Activ
         span.setSpan(ForegroundColorSpan(color), 0, span.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         spanBuilder.append(span)
 
-        mBinding.tvServiceAgreement.movementMethod = LinkMovementMethod.getInstance()
-        mBinding.tvServiceAgreement.text = spanBuilder
-        //设置高亮颜色透明，因为点击会变色
-        mBinding.tvServiceAgreement.highlightColor = ContextCompat.getColor(applicationContext, R.color.transparent)
+        return spanBuilder
     }
 
     override fun onBackPressed() {

@@ -22,6 +22,8 @@
     <string name="username">账号</string>
     <string name="register">注 册</string>
     <string name="login">登 录</string>
+    <string name="agree">同意</string>
+    <string name="not_agree">不同意</string>
 
     <string name="large_text">
         "用到的库：\n\n"
