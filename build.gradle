@@ -2,14 +2,18 @@
 apply from: "./buildSrc/buildTrace.gradle"
 
 buildscript {
+    ext {
+        agp_version = '8.6.0'
+        kotlin_version = '2.0.0'
+    }
     repositories {
         maven { url 'https://maven.aliyun.com/repository/public' }
         google()
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:${Versions.gradle_version}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin_version}"
+        classpath "com.android.tools.build:gradle:$agp_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -25,6 +29,11 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }
+
+// 可以替换为以下写法兼容Gradle 8.x及以上版本
+//tasks.register('clean', Delete) {
+//    delete rootProject.buildDir
+//}
