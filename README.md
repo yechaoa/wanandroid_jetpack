@@ -6,6 +6,7 @@
 ![](https://img.shields.io/badge/MVVM-Jetpack-orange.svg)
 ![](https://img.shields.io/hexpm/l/plug.svg)
 ![](https://img.shields.io/badge/CSDN-yechaoa-green.svg)
+![](https://img.shields.io/badge/掘金-yechaoa-green.svg)
 
 * [玩安卓 Flutter版本](https://github.com/yechaoa/wanandroid_flutter)
 * [玩安卓 Java版本](https://github.com/yechaoa/wanandroid_java)
@@ -15,16 +16,16 @@
 
 感谢`鸿洋`提供的api。
 
-<br>
 
 # :fire:截图
-| <img src="/screenshot/home.png" width="285"/> | <img src="/screenshot/tree.png" width="285"/> | <img src="/screenshot/navi.png" width="285"/> |
-| :--: | :--: | :--: |
-| 首页 | 体系 | 导航 |
 
-| <img src="/screenshot/pro.png" width="285"/> | <img src="/screenshot/search.png" width="285"/> | <img src="/screenshot/about.png" width="285"/> |
+| 首页 | 体系 | 导航 |
 | :--: | :--: | :--: |
+| <img src="/screenshot/home.png" width="285"/> | <img src="/screenshot/tree.png" width="285"/> | <img src="/screenshot/navi.png" width="285"/> |
+
 | 项目 | 搜索 | 关于 |
+| :--: | :--: | :--: |
+| <img src="/screenshot/pro.png" width="285"/> | <img src="/screenshot/search.png" width="285"/> | <img src="/screenshot/about.png" width="285"/> |
 
 # :beers:你能学到
 
@@ -32,11 +33,12 @@
 * Jetpack组件的使用，Lifecycle、ViewModel、Room等
 * Kotlin语法特性、标准函数、扩展函数、高阶函数等
 * Material Design控件的使用等
-* Gradle Plugin的使用等
 
 # :package:开发环境
-* Android Studio 4.1.2 -> Arctic Fox | 2020.3.1
-* Kotlin 1.4.21 -> 1.5.31
+| Android Studio   | Kotlin | AGP   | Gradle | JDK | compileSdk |
+|------------------|--------|-------|--------|-----|------------|
+| Meerkat 2024.3.1 | 2.1.0  | 8.9.0 | 8.11.1 | 17  | 35         |
+
 
 # :point_right:感谢
 * [YUtils](https://github.com/yechaoa/YUtils)
@@ -50,8 +52,7 @@
 * [BRVAH](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
 * [flowlayout](https://github.com/hongyangAndroid/FlowLayout)
 
-<br>
-
+# License
 ```
    Copyright [2021] [yechaoa]
 

@@ -10,7 +10,7 @@ class BaseBean<T>(private val errorCode: Int, private val data: T, private val e
 
     fun code(): Int {
         if (errorCode == 0) {
-            return errorCode
+            return 0
         } else {
             throw ApiException(errorCode, errorMsg ?: "")
         }

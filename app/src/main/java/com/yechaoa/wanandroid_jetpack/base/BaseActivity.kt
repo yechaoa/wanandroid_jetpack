@@ -23,6 +23,7 @@ abstract class BaseActivity<VB : ViewBinding>(private val inflate: (LayoutInflat
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT//竖屏
 
+        // 初始化沉浸式 模拟器状态栏白色 see：https://github.com/gyf-dev/ImmersionBar/issues/543
         ImmersionBar.with(this)
             .fitsSystemWindows(true)
             .statusBarColor(R.color.colorPrimary)

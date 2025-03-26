@@ -107,7 +107,7 @@ class CollectActivity : BaseVmActivity<ActivityCollectBinding, CollectViewModel>
     override fun setListener() {
         super.setListener()
         mBinding.toolbar.setNavigationOnClickListener {
-            super.onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 }

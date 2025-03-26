@@ -92,7 +92,7 @@ class CrashHandler : Thread.UncaughtExceptionHandler {
             if (pi != null) {
                 val versionName = if (pi.versionName == null) "null" else pi.versionName
                 val versionCode = pi.longVersionCode.toString() + ""
-                infos["versionName"] = versionName
+                infos["versionName"] = versionName ?: "null"
                 infos["versionCode"] = versionCode
             }
         } catch (e: PackageManager.NameNotFoundException) {
