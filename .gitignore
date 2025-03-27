@@ -9,3 +9,57 @@
 .cxx
 .buildSrc/build/
 .buildSrc/.gradle/
+
+# 生成的文件
+bin/
+gen/
+out/
+
+# Gradle文件
+.gradle/
+build/
+*/build/
+gradlew
+gradlew.bat
+gradle/wrapper/gradle-wrapper.jar
+
+# 本地配置文件
+local.properties
+*.log
+
+# Android Studio导航编辑器临时文件
+.navigation/
+
+# Android Studio捕获的文件
+captures/
+
+# IntelliJ
+*.iml
+.idea/
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+
+# Keystore文件
+*.jks
+*.keystore
+
+# Google服务配置
+google-services.json
+
+# Proguard
+proguard/
+
+# 日志文件
+*.log
+
+# 备份文件
+*~
+*.bak
+
+# Android Profiling
+*.hprof
+
+# 其他临时文件
+*.tmp
+*.temp
