@@ -39,7 +39,7 @@ android {
         // resConfigs("en", "zh", "zh-rCN")
         androidResources {
             // 声明应用支持的语言区域（BCP 47 格式）
-            localeFilters.addAll(listOf("en", "zh", "zh-CN"))
+            localeFilters.addAll(listOf("en", "zh", "zh-rCN"))
         }
 
         ndk {
